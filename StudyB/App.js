@@ -1,39 +1,26 @@
 
-/*import * as React from 'react';
-import {} from '@react-navigation/native'
-import {createStackNavigator} from '@react-navigation/stack'
+import React, {Component} from 'react';
+import {StyleSheet, View, StatusBar} from 'react-native';
 
+import {Provider} from 'react-redux';
+import NavigationPage from './src/components/NavigationPage';
+import {PersistGate} from 'redux-persist/es/integration/react';
 import MainPage from './src/components/MainPage';
-import SignInPage from './src/components/SignInPage';
-import SignUpPage from './src/components/SignUpPage';
-import CoursePage from './src/components/CoursePage';
+import persist from './src/config/store';
 
+const persistStore = persist();
 
-const Stack = createStackNavigator();
-
-const Navigator = createStackNavigator({
-  Home: {screen: MainPage},
-  SignIn: {screen: SignInPage},
-  SignUp: {screen: SignUpPage}
-
-})
-
-const App = createStackNavigator(Navigator);
-
-export default App;
-
-/*export default class App extends React.Component{
+export default class App extends Component{
 
   render(){ 
     return(
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="MainPage">
-            <Stack.Screen name="MainPage" component={MainPage}/>
-            <Stack.Screen name="SignInPage" component={SignInPage}/>
-            <Stack.Screen name="SignUpPage" component={SignUpPage}/>
-            <Stack.Screen name="CoursePage" component={CoursePage}/>
-          </Stack.Navigator>
-        </NavigationContainer>
+        <Provider store={persistStore.store}>
+          <PersistGate loading={null} persistor={persistStore.persistor}>
+            <NavigationPage/>
+            <MainPage/>
+          </PersistGate>
+        </Provider>
     );  
   }
-}*/
+}
+

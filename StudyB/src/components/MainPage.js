@@ -3,29 +3,39 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Logo from '../images/Logo';
+import {Actions} from 'react-native-router-flux'; 
+import {connect} from 'react-redux';
 
+class MainPage extends Component{
+    signin(){
+        Actions.signin()
+    }
 
-export default class MainPage extends Component{
- 
+    signup(){
+        Actions.signup()
+    }
+
     render(){
 
- 
         return(
-            <View style = {styles.container}>
-            <Logo/>
+           
+                <View style = {styles.container}>
+                    <Logo/>
             
-            
-            <Text style = {styles.text}>StudyB</Text>
-            
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText} >Sign In</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Sign Up</Text>
-            </TouchableOpacity>
+                    <Text style = {styles.text}>StudyB</Text>
+                    
+                    <TouchableOpacity onPress={this.signin} style={styles.button} >
+                        <Text  style={styles.buttonText}  >Sign In</Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity onPress={this.signup} style={styles.button}>
+                        <Text style={styles.buttonText}>Sign Up</Text>
+                    </TouchableOpacity>
+                    
+                </View>
+                
 
-            </View>
+             
         )
     
     }
@@ -33,7 +43,7 @@ export default class MainPage extends Component{
     
 
 }
-
+export default connect(null,null)(MainPage)
 
 const styles = StyleSheet.create({
     container : {

@@ -19,8 +19,8 @@ import {
 
 const {widht: WIDTH } = Dimensions.get('window')
 
-export default class SignInPage extends Component{
-  
+
+export default class SignInPage extends Component {
 
   
   render() {
@@ -69,10 +69,11 @@ export default class SignInPage extends Component{
                 </View>
                 <View style={styles.signUpTextCont}>
                     <Text style={styles.signUpText}>Dont have an account Sign Up!</Text>
-                    <TouchableOpacity><Text style={styles.button}/></TouchableOpacity>
+                    <TouchableOpacity><Text style={styles.input} style={styles.button}/></TouchableOpacity>
               
 
                 </View>
+                
               </View>
           
  
