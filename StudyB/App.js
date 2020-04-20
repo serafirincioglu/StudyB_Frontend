@@ -5,7 +5,6 @@ import {StyleSheet, View, StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import NavigationPage from './src/components/NavigationPage';
 import {PersistGate} from 'redux-persist/es/integration/react';
-import MainPage from './src/components/MainPage';
 import persist from './src/config/store';
 
 const persistStore = persist();
@@ -17,7 +16,6 @@ export default class App extends Component{
         <Provider store={persistStore.store}>
           <PersistGate loading={null} persistor={persistStore.persistor}>
             <NavigationPage/>
-            <MainPage/>
           </PersistGate>
         </Provider>
     );  

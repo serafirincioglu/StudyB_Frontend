@@ -11,6 +11,9 @@ export const api = async (url, method, body = null, headers = {}) => {
             throw new Error("Request body required");
 
         }
+        if(method === "GET"){
+            
+        }
 
         if(reqBody){
             fetchParams.headers["Content-type"] = "application/json";
@@ -20,7 +23,7 @@ export const api = async (url, method, body = null, headers = {}) => {
         const fetchPromise = fetch(endPoint, fetchParams);
         const timeOutPromise = new Promise((resolve, reject) =>{
             setTimeout(() => {
-                reject();
+                reject("Request Timeout");
             }, 10000);
 
         });
@@ -32,26 +35,53 @@ export const api = async (url, method, body = null, headers = {}) => {
     }
 }
 
-export const fetchApi = async (url,method, body, statusCode, headers, token = null, loader = false) => {
+export const fetchApi = async (url,method, body, statusCode, headers, id = null, loader = false) => {
     try{
         const headers = {}
-        if(token){
-            headers["x-auth"] = token;
+        const result = {
+            id: null,
+            success: false,
+            responseBody: null
+        };
+        if(id){
+            headers["x-auth"] = id;
         }
         const response = await api(url, method, body, headers);
+
         console.log(response);
 
         if(response.status === statusCode){
-            const responseBody = await response.json();
-            return responseBody;
+            result.success = true;
+            
+            if(response.headers.get("x-auth")){
+                result.id = response.headers.get("x-auth");
+            }
+            let responseBody;
+            const responseText = await response.text();
+
+            try{
+                responseBody = JSON.parse(responseText);
+            }catch(e){
+                responseBody = responseText;
+            }
+            result.responseBody = responseBody;
+            return result;
         }
-        throw response;
-    }catch(error){
-        throw error;
-    }finally{
+        let errorBody;
+        const errorText = await response.text();
 
+        try {
+            errorBody = JSON.parse(errorText);
+        } catch (e) {
+            errorBody = errorText;
+        }
+
+        result.responseBody = errorBody;
+
+        console.log(result);
+
+        throw result;
+    } catch (error) {
+        return error;
     }
-
 }
-
-const response = fetchApi("/users/create", "POST", {}, 200, token, true);

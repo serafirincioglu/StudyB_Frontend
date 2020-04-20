@@ -1,9 +1,10 @@
-
 import React, {Component} from 'react';
 import { StatusBar } from 'react-native';
 import {Field, reduxForm} from 'redux-form';
 import InputText from './InputText';
 import Logo from '../images/Logo';
+import axios from 'axios';
+
 import {
     StyleSheet,
     View,
@@ -84,8 +85,7 @@ const styles = StyleSheet.create({
 
   },
   body1 : {
-    
-    flex: 1,
+
     backgroundColor: 'black',
     justifyContent:'center',
     alignItems : 'center',
@@ -94,12 +94,24 @@ const styles = StyleSheet.create({
 });
 
 class SignUpPage extends Component{
-    createNewUser = () => {
-        alert("boom")
-    }
+
 
     onSubmit = (values) => {
       console.log(values);
+      const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }}
+  
+        
+        axios.post('https://studyb.azurewebsites.net/api/users', values, config)
+                .then(res => console.log(res.data)).catch(error => {
+                    console.log(error);
+                    });
+        
+                
+    
     }
     renderTextInput = (field) => {
         const {meta: {touched,error}, label, secureTextEntry, maxLength, keyboardType, placeholder, input: {onChange, ...restInput}} = field;
@@ -138,8 +150,15 @@ class SignUpPage extends Component{
 
                     
                 <View style={styles.sectionContainer}>
-                    <Field name="username" 
+                    <Field name="userName" 
                           placeholder="Username"
+                          component={this.renderTextInput}/>
+                    <Field name="firstName" 
+                          placeholder="firstName"
+                          component={this.renderTextInput}/>
+
+                    <Field name="lastName" 
+                          placeholder="lastName"
                           component={this.renderTextInput}/>
 
                     <Field name="email" 
@@ -172,7 +191,6 @@ class SignUpPage extends Component{
                         placeholderTextColor={'white'}
                         ref={(input) => this.password = input}
                         onSubmitEditing={()=> this.password.focus()}
-
                       /> 
                       <TextInput
                         style={styles.input}
@@ -196,7 +214,7 @@ class SignUpPage extends Component{
 
 const validation = (values) => {
       const errors = {};
-      if(!values.username) {
+      if(!values.userName) {
         errors.username = "Name is required"
       }
       if(!values.email) {
@@ -212,4 +230,3 @@ const validation = (values) => {
     form: "signup",
     validation 
   })(SignUpPage)
-  

@@ -43,7 +43,27 @@ const styles = StyleSheet.create({
 });
 
 class InputText extends Component{
+   state = {
+       value: ""
+   }
+   componentDidMount(){
+        this.setState({
+            value: this.props.value
+        })
+
+   }
+   onChangeText = (value) => {
+       
+    this.setState({
+            value
+       }, () => {
+           this.props.onChangeText(value);
+       }
+       )
+   }
+    
     render() {
+        console.log(this.props.value);
         const {placeholder,secureTextEntry,keyboardType,maxLenght,value,onChangeText,onSubmitEditing} = this.props;
         return (
             <View>
@@ -56,9 +76,9 @@ class InputText extends Component{
                     keyboardType={keyboardType}
                     maxLength={maxLenght}
                     returnKeyType="next"
-                    value={value}
+                    value={this.state.value}
                     onSubmitEditing={onSubmitEditing}
-                    onChangeText={onChangeText}/>
+                    onChangeText={this.onChangeText}/>
             </View>
         )
     }
