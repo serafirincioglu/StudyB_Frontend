@@ -10,6 +10,11 @@ import persist from './src/config/store';
 const persistStore = persist();
 
 export default class App extends Component{
+  constructor (props){
+    super(props);
+    const onlineUser = React.createContext(''); 
+
+  }
 
   render(){ 
     return(

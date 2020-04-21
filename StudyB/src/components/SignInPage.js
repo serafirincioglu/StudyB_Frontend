@@ -1,7 +1,12 @@
 
 import React, {Component} from 'react';
 import { StatusBar } from 'react-native';
+import {Field,reduxForm} from 'redux-form';
 import Logo from '../images/Logo'
+import axios from 'axios';
+import InputText from './InputText';
+
+
 
 import {
     StyleSheet,
@@ -15,15 +20,68 @@ import {
   import {
     Colors,
   } from 'react-native/Libraries/NewAppScreen';
+import { Actions } from 'react-native-router-flux';
 
 
 const {widht: WIDTH } = Dimensions.get('window')
 
 
-export default class SignInPage extends Component {
+class SignInPage extends Component {
+
+  coursepage(){
+    Actions.coursepage()
+  }
+  
+  onSubmit = (values) => {
+    //console.log(values);
+    const config = {
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      }}
+
+    
+      axios.get('https://studyb.azurewebsites.net/api/users', config)
+              .then(response => {
+                console.log(response.data);
+                console.log(values.userName);
+                console.log(values.password);
+                response.data.forEach(element => {
+                  if(element.userName === values.userName
+                    && element.password === values.password){
+                      console.log("nice");
+                      onlineUser = element.id;
+                      console.log(onlineUser);
+                      Actions.coursepage();
+                  }
+                });
+        })
+  }
+  
 
   
+
+  renderTextInput = (field) => {
+    const {meta: {touched,error}, label, secureTextEntry, maxLength, keyboardType, placeholder, input: {onChange, ...restInput}} = field;
+    return (
+      <View>
+        <InputText
+          onChangeText={onChange}
+          maxLength={maxLength}
+          placeholder={placeholder}
+          keyboardType={keyboardType}
+          secureTextEntry={secureTextEntry}
+          label={label}
+          {...restInput} />
+          {(touched && error) && <Text style={styles.errorText}>{error}</Text>}
+      </View>
+    
+
+    );
+}
   render() {
+    const {handleSubmit} = this.props; 
+    
         return(
               
               <View style={styles.body}>
@@ -43,26 +101,17 @@ export default class SignInPage extends Component {
 
                 <View style={styles.sectionContainer}>
                     <View>
-
-                      <TextInput
-                        style={styles.input}
-                        placeholder={'Username'}
-                        returnKeyType="next"
-                        //onSubmitEditing = {() => this.passwordInput.focus()}
-                        keyboardType= "default"
-                        autoCapitalize = "none"
-                        placeholderTextColor={'rgba(255,255,255,0.7)'}
-                      /> 
-                      <TextInput
-                        style={styles.input}
-                        placeholder={'Password'}
-                        returnKeyType="go"
-                        secureTextEntry={true}
-                        //ref = {(input) => this.passwordInput = input}
-                        placeholderTextColor={'rgba(255,255,255,0.7)'}
-                      /> 
+                    
+                    <Field name="userName" 
+                          placeholder="Username"
+                          component={this.renderTextInput}/>
+                    <Field name="password" 
+                          placeholder="Password"
+                          component={this.renderTextInput}/>
                     </View>
-                    <TouchableOpacity style={styles.button}>
+
+
+                    <TouchableOpacity style={styles.button} onPress={handleSubmit(this.onSubmit)}>
                     <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                 
@@ -81,6 +130,9 @@ export default class SignInPage extends Component {
     }
 
 }
+export default reduxForm({
+  form: "signin"
+})(SignInPage)
 
 
 const styles = StyleSheet.create({

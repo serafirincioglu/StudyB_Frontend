@@ -2,34 +2,40 @@ import React, {Component} from 'react';
 import {View, ScrollView,StyleSheet,StatusBar,Text} from 'react-native';
 import {ListItem, ButtonGroup,Icon} from 'react-native-elements';
 //import {Icon} from 'react-native-vector-icons/Ionicons';
+import axios from 'axios';
+
 
 export default class CoursePage extends Component{
+    
+    constructor(props) {
+        super(props);
+        this.state = {chatroom: []};
+    }
+    
+    componentDidMount(){
+        axios.get('https://studyb.azurewebsites.net/api/chatrooms')
+          .then(response => {
+            this.setState({chatroom: response.data });
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+    }
+
+    enrollToChatroom(){
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }}
+        
+        axios.post('https://studyb.azurewebsites.net/api/enroll/' + {chatroomId} + '/enrollChatroom/' + {userId} , values, config)
+        .then()
+    }
+
 
     render(){
-
-        const list = [
-            {
-                name: 'CS101',
-                subtitle: 'Intro'
-            },
-            {
-                name: 'CS102',
-                subtitle: 'Intro'
-            },
-            {
-                name: 'CS201',
-                subtitle: 'Intro'
-            },
-            {
-                name: 'CS202',
-                subtitle: 'Intro',
-                
-            },
-            {
-                name: 'CS223',
-                subtitle: 'Intro'
-            },
-        ]
         
         return(
         
@@ -38,14 +44,14 @@ export default class CoursePage extends Component{
             <View style={styles.container}>
                 <Text style={styles.text}>Courses</Text>
             {
-                list.map((l,i) => (
+                this.state.chatroom.map((l,i) => (
                     <ListItem
                         key={i}
-                        title={l.name}
-                        subtitle={l.subtitle}
+                        title={l.chatroomName}
+                        subtitle={l.id}
                         color='black' 
                         bottomDivider
-                        
+                        onPress={this.enrollToChatroom}
                     />
                     
                     )            

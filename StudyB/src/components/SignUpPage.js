@@ -4,6 +4,7 @@ import {Field, reduxForm} from 'redux-form';
 import InputText from './InputText';
 import Logo from '../images/Logo';
 import axios from 'axios';
+import {Actions} from 'react-native-router-flux'; 
 
 import {
     StyleSheet,
@@ -95,7 +96,10 @@ const styles = StyleSheet.create({
 
 class SignUpPage extends Component{
 
-
+    coursepage(){
+        Actions.coursepage()
+    }    
+    
     onSubmit = (values) => {
       console.log(values);
       const config = {
@@ -106,8 +110,23 @@ class SignUpPage extends Component{
   
         
         axios.post('https://studyb.azurewebsites.net/api/users', values, config)
-                .then(res => console.log(res.data)).catch(error => {
+                .then(res =>{
+                  console.log(res);
+                    if(res.status == 201){
+                      onlineUser = res.data.id;
+                      console.log(onlineUser);
+                      Actions.coursepage();
+                    }
+
+                    else{
+                      alert("boooom!!");
+                    }
+                    
+                  }
+                  
+                  ).catch(error => {
                     console.log(error);
+                    
                     });
         
                 
