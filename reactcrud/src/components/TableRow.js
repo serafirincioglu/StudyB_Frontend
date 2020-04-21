@@ -10,10 +10,22 @@ class TableRow extends Component {
             {this.props.obj.userName}
           </td>
           <td>
+            {this.props.obj.id}
+          </td>
+          <td>
+            {this.props.obj.admin}
+          </td>
+          <td>
             {this.props.obj.password}
           </td>
           <td>
             {this.props.obj.email}
+          </td>
+          <td>
+            {this.props.obj.firstName}
+          </td>
+          <td>
+            {this.props.obj.lastName}
           </td>
           <td>
             <button className="btn btn-primary">Edit</button>
