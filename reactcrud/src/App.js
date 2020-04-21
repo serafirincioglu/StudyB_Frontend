@@ -14,22 +14,22 @@ class App extends Component {
       <Router>
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link to={'/'} className="navbar-brand">React CRUD Example</Link>
+            <Link to={'/'} className="navbar-brand">StudyB</Link>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                   <Link to={'/'} className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={'/create'} className="nav-link">Create</Link>
+                  <Link to={'/create'} className="nav-link">Sing Up</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={'/index'} className="nav-link">Index</Link>
+                  <Link to={'/index'} className="nav-link">Sign in</Link>
                 </li>
               </ul>
             </div>
           </nav> <br/>
-          <h2>Welcome to React CRUD Tutorial</h2> <br/>
+          <h2>StudyB: as busy as bee</h2> <br/>
           <Switch>
               <Route exact path='/create' component={ Create } />
               <Route path='/edit/:id' component={ Edit } />

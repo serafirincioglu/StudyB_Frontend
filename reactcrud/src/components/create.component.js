@@ -7,41 +7,55 @@ export default class Create extends Component {
         this.onChangeUserName = this.onChangeUserName.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeFirstName = this.onChangeFirstName.bind(this);
+        this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         
-            this.state = {
-                userName: '',
-                firstName: '',
-                lastName:'',
-                password:'',
-                email:''
-            }
+        this.state = {
+            userName: '',
+            firstName: '',
+            lastName:'',
+            password:'',
+            email:''
         }
+    }
 
-        onChangeUserName(e) {
-        this.setState({
-            userName: e.target.value
-        });
-        }
+    onChangeUserName(e) {
+    this.setState({
+        userName: e.target.value
+    });
+    }
 
-        onChangeEmail(e) {
-        this.setState({
-            email: e.target.value
-        })
-        }
+    onChangeFirstName(e) {
+    this.setState({
+        firstName: e.target.value
+    })
+    }
 
-        onChangePassword(e) {
-        this.setState({
-            password: e.target.value
-        })  
+    onChangeLastName(e) {
+    this.setState({
+        lastName: e.target.value
+    })
+    }
+
+    onChangeEmail(e) {
+    this.setState({
+        email: e.target.value
+    })
+    }
+
+    onChangePassword(e) {
+    this.setState({
+        password: e.target.value
+    })  
     }
 
     onSubmit(e) {
         e.preventDefault();
         const obj = {
             userName: this.state.userName,
-            firstName: 'dummy',
-            lastName:'dummy',
+            firstName: this.state.firstName,
+            lastName:this.state.lastName,
             password: this.state.password,
             email: this.state.email
         };
@@ -67,7 +81,7 @@ export default class Create extends Component {
   render() {
     return (
         <div style={{ marginTop: 10 }}>
-            <h3>Add user</h3>
+            <h3>Sign Up</h3>
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>User Name:  </label>
@@ -76,6 +90,22 @@ export default class Create extends Component {
                       className="form-control" 
                       value={this.state.userName}
                       onChange={this.onChangeUserName}
+                      />
+                </div>
+                <div className="form-group">
+                    <label>Name: </label>
+                    <input type="text" 
+                      className="form-control"
+                      value={this.state.firstName}
+                      onChange={this.onChangeFirstName}
+                      />
+                </div>
+                <div className="form-group">
+                    <label>Surname: </label>
+                    <input type="text" 
+                      className="form-control"
+                      value={this.state.lastName}
+                      onChange={this.onChangeLastName}
                       />
                 </div>
                 <div className="form-group">
