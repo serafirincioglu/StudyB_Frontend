@@ -33,7 +33,7 @@ class SignInPage extends Component {
   }
   
   onSubmit = (values) => {
-    //console.log(values);
+    console.log(values);
     const config = {
       headers: {
           'Content-Type': 'application/json',

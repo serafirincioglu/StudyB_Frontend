@@ -13,6 +13,7 @@ export default class App extends Component{
   constructor (props){
     super(props);
     const onlineUser = React.createContext(''); 
+    const onlineChatroom = React.createContext(''); 
 
   }
 

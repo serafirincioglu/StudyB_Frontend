@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {View, ScrollView,StyleSheet,StatusBar,Text} from 'react-native';
-import {ListItem, ButtonGroup,Icon} from 'react-native-elements';
-//import {Icon} from 'react-native-vector-icons/Ionicons';
+import {ListItem,CheckBox, ButtonGroup,Icon} from 'react-native-elements';
 import axios from 'axios';
+import { Actions } from 'react-native-router-flux';
+import {} from 'react-native-fontawesome';
+
 
 
 export default class CoursePage extends Component{
@@ -11,7 +13,14 @@ export default class CoursePage extends Component{
         super(props);
         this.state = {chatroom: []};
     }
-    
+
+    feedPage(){
+        Actions.feedpage()
+    }
+
+
+
+
     componentDidMount(){
         axios.get('https://studyb.azurewebsites.net/api/chatrooms')
           .then(response => {
@@ -22,43 +31,81 @@ export default class CoursePage extends Component{
           })
     }
 
-    enrollToChatroom(){
-        
+    enrollToChatroom = (chId) => {
+
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
-            }}
+        }}
+        const a = {
+            "text": "deneme...",
+            "fileAddress": null
+        }   
         
-        axios.post('https://studyb.azurewebsites.net/api/enroll/' + {chatroomId} + '/enrollChatroom/' + {userId} , values, config)
-        .then()
+        const address = 'https://studyb.azurewebsites.net/api/enroll/' + chId + '/enrollChatroom/' + onlineUser;
+        
+        console.log(address);
+        console.log(a);
+
+        axios.post(address, a, config)
+        .then(res =>{
+            console.log(res);
+              if(res.status == 204){
+                onlineChatroom = chId;
+                console.log(chId);
+                console.log(onlineChatroom);
+                Actions.feedpage();
+              }
+              else{
+                alert("You have already enrolled ! ");
+              }
+            }
+            
+        ).catch(error => {
+                console.log(error);
+                alert("booooooooooo,mmdmmd ! ");
+        });   
+    
     }
+            
+
+
+        
+    
+
 
 
     render(){
-        
+        const {handleSubmit} = this.props;  
         return(
         
         <ScrollView> 
-      
+     
             <View style={styles.container}>
-                <Text style={styles.text}>Courses</Text>
-            {
-                this.state.chatroom.map((l,i) => (
-                    <ListItem
-                        key={i}
-                        title={l.chatroomName}
-                        subtitle={l.id}
-                        color='black' 
-                        bottomDivider
-                        onPress={this.enrollToChatroom}
-                    />
-                    
-                    )            
-                )  
 
+                <Text style={styles.text}>Courses</Text>
                 
-            }
+                {   
+                    this.state.chatroom.map((l,i) => (
+                        <ListItem
+                            key={i}
+                            title={l.chatroomName}
+                            subtitle={l.id}
+                            color='black' 
+                            bottomDivider
+                            
+                            onPress={() => {this.enrollToChatroom(l.id)}}
+                
+                        />
+                       
+                        )   
+                       
+                    )  
+                    
+                    
+                }
+
             </View>
         </ScrollView>
         

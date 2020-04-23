@@ -188,38 +188,7 @@ class SignUpPage extends Component{
                           placeholder="Password"
                           secureTextEntry={true}
                           component={this.renderTextInput}/>
-                    {/* <View>
-                  
-                      <TextInput
-                        style={styles.input}
-                        returnKeyType="next"
-                        placeholder={'Email'}
-                        keyboardType= "email-address"
-                        autoCapitalize = "none"
-                        placeholderTextColor={'white'}
-                        ref={(input) => this.username = input}
-                        onSubmitEditing={()=> this.username.focus()}
-                      />
-                      <TextInput
-                        style={styles.input}
-                        placeholder={'Username'}
-                        returnKeyType="next"
-                        //onSubmitEditing = {() => this.passwordInput.focus()}
-                        keyboardType= "default"
-                        autoCapitalize = "none"
-                        placeholderTextColor={'white'}
-                        ref={(input) => this.password = input}
-                        onSubmitEditing={()=> this.password.focus()}
-                      /> 
-                      <TextInput
-                        style={styles.input}
-                        placeholder={'Password'}
-                        returnKeyType="go"
-                        secureTextEntry={true}
-                        //ref = {(input) => this.passwordInput = input}
-                        placeholderTextColor={'white'}
-                      /> 
-                    </View> */}
+                    
                   <TouchableOpacity style={styles.button} onPress={handleSubmit(this.onSubmit)}>
                     <Text style={styles.buttonText}>Sign Up</Text>
                   </TouchableOpacity>  
