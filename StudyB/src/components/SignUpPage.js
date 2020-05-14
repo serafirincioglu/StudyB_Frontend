@@ -171,17 +171,21 @@ class SignUpPage extends Component{
                 <View style={styles.sectionContainer}>
                     <Field name="userName" 
                           placeholder="Username"
+                          autoCapitalize = 'none'
                           component={this.renderTextInput}/>
                     <Field name="firstName" 
                           placeholder="firstName"
+                          autoCapitalize = 'none'
                           component={this.renderTextInput}/>
 
                     <Field name="lastName" 
                           placeholder="lastName"
+                          autoCapitalize = 'none'
                           component={this.renderTextInput}/>
 
                     <Field name="email" 
                           placeholder="Email"
+                          autoCapitalize = 'none'
                           component={this.renderTextInput}/>
 
                     <Field name="password" 

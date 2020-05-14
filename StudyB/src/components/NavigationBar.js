@@ -11,8 +11,9 @@ import {
         return(
             <View style={styles.NavigBar}>
                 <View style={styles.studyBText}>
-                <Image style={{width: 100, height:100}}
-                    source={require('../images/defaultpp.png')}/>
+                <Image style={{width: 50, height:50}}
+                    source={require('../images/lastest_logo.png')}/>
+                <Text style={styles.BarText}>StudyB</Text>
                 </View>
             </View>
         );
@@ -28,7 +29,8 @@ const styles = StyleSheet.create(
             alignContent: 'center',
             backgroundColor:'black',
             marginBottom: 20,
-            width: '100%'
+            width: '60%',
+            alignSelf:'center'
             
            
         },

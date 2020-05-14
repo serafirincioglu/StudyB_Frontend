@@ -64,7 +64,7 @@ export default class CoursePage extends Component{
             
         ).catch(error => {
                 console.log(error);
-                alert("booooooooooo,mmdmmd ! ");
+                alert("You have already enrolled ! ");
         });   
     
     }

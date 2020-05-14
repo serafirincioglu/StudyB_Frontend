@@ -10,7 +10,7 @@ import {
     render(){
         return(
             <View style={StyleSheet.container}>
-                <Image style={{width: 50, height:50}}
+                <Image style={{width: 40, height:40}}
                     source={require('../images/Profile.png')}/>
             </View>
         );

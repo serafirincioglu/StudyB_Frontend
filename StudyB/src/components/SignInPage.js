@@ -28,8 +28,8 @@ const {widht: WIDTH } = Dimensions.get('window')
 
 class SignInPage extends Component {
 
-  coursepage(){
-    Actions.coursepage()
+  feedpage(){
+    Actions.feedpage()
   }
   
   onSubmit = (values) => {
@@ -52,7 +52,7 @@ class SignInPage extends Component {
                       console.log("nice");
                       onlineUser = element.id;
                       console.log(onlineUser);
-                      Actions.coursepage();
+                      Actions.feedpage();
                   }
                 });
         })
@@ -103,10 +103,13 @@ class SignInPage extends Component {
                     <View>
                     
                     <Field name="userName" 
+                          autoCapitalize = 'none'
                           placeholder="Username"
                           component={this.renderTextInput}/>
                     <Field name="password" 
                           placeholder="Password"
+                          secureTextEntry={true}
+                          autoCapitalize = 'none'
                           component={this.renderTextInput}/>
                     </View>
 

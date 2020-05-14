@@ -13,60 +13,59 @@ export default class FeedPage extends Component{
         Actions.coursepage()
     }
 
-    // profile(){
-    //     Actions.profile()
-    // }
+    profilepage(){
+         Actions.profilepage()
+    }
     
-    // reward(){
-    //     Actions.reward()
-    // }
+    rewardpage(){
+         Actions.rewardpage()
+    }
 
-    // chatroom(){
-    //     Actions.chatroom()
-    // }
+    postpage(){
+        Actions.postpage()
+    }
 
     render(){
-    return (
-      <View style={styles.screen}>
-        <View style={styles.logo}>
-        <Logo/>
-        </View>
-              
-        <Text style = {styles.text}>StudyB</Text>
-  
-        <View style={styles.buttonContainer}>
-          <View style={styles.inputContainer}>
-  
-          <TouchableOpacity style={styles.button}>
-              <Profile />
-              <Text style={styles.buttonText}>Profile</Text>
+       
+      return (
+        <View style={styles.screen}>
+          <View style={styles.logo}>
+          <Logo/>
+          </View>
+                
+          <Text style = {styles.text}>StudyB</Text>
+    
+          <View style={styles.buttonContainer}>
+            <View style={styles.inputContainer}>
+    
+            <TouchableOpacity style={styles.button} onPress={() => {this.profilepage()}}>
+                <Profile />
+                <Text style={styles.buttonText}>Profile</Text>
             </TouchableOpacity>
-     
-            <TouchableOpacity style={styles.button}>
+            
+            <TouchableOpacity style={styles.button} onPress={() => {this.coursepage()}}>
               <Book />
               <Text style={styles.buttonText}>Courses</Text>
             </TouchableOpacity>
-         
-  
-          </View>
-  
-          <View style={styles.inputContainer}>
-  
-          <TouchableOpacity style={styles.button}>
-              
-              <Reward />
-              <Text style={styles.buttonText}>Rewards</Text>
-            </TouchableOpacity>
-  
-            <TouchableOpacity style={styles.button}>
-              <Chat />
-              <Text style={styles.buttonText}>Chatrooms</Text>
-            </TouchableOpacity>
-  
+            </View>
+    
+            <View style={styles.inputContainer}>
+    
+            <TouchableOpacity style={styles.button} onPress={() => {this.rewardpage()}}>
+                
+                <Reward />
+                <Text style={styles.buttonText}>Rewards</Text>
+              </TouchableOpacity>
+    
+              <TouchableOpacity style={styles.button} onPress={() => {this.postpage()}}>
+                <Chat />
+                <Text style={styles.buttonText}>Chatrooms</Text>
+              </TouchableOpacity>
+    
+            </View>
           </View>
         </View>
-      </View>
-    );
+      )
     }
 }
   
@@ -104,7 +103,7 @@ export default class FeedPage extends Component{
       borderColor: 'black',
       borderWidth: 1 },
     
-      buttonContainer: {
+    buttonContainer: {
       padding:20,
       justifyContent: 'center'
     },
