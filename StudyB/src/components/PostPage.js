@@ -1,34 +1,62 @@
-import React, { useState }  from 'react';
+import React, { useState,Component }  from 'react';
 import { StyleSheet,Text, View, TextInput, Button, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import {ListItem,CheckBox, ButtonGroup,Icon} from 'react-native-elements';
 
 import PostItem from './PostItem';
 import PostInput from './PostInput';
 import NavigationBar from './NavigationBar';
 import Book from '../images/Book';
+import axios from 'axios';
 
-export default function App() {
-  const [courseGoals, setCourseGoals] = useState([]);
-  const [isAddMode, setIsAddMode] = useState(false);
+export default class PostPage extends Component {
 
-  const addGoalHandler = goalTitle => {
+  constructor(props) {
+    super(props);
+    this.state = {courseGoals: []};
+  }
+
+  addGoalHandler = (goalTitle) => {
+    
     setCourseGoals(currentGoals => [
       ...currentGoals, 
-      {id: Math.random().toString(), value: goalTitle}
+      {id:goalTitle.id , value: goalTitle.text}
     ]); 
     setIsAddMode(false);
   };
 
-  const removeGoalHandler = goalId =>{
+  removeGoalHandler = goalId =>{
     setCourseGoals(currentGoals => {
       return currentGoals.filter((goal)=> goal.id !== goalId);
     });
   };
 
-  const cancelGoalAdditionHandler = () => {
+  cancelGoalAdditionHandler = () => {
     setIsAddMode(false);
-}
+  } 
+  
+  componentDidMount(){
+    const config = {
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+    }}
 
-  return (
+    axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom + '/messages/',config)
+      .then(response => {
+        //esponse.data.foreach(d => this.addGoalHandler(d))
+        console.log("reponse of courses page" +   response.data);
+        this.setState({courseGoals: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
+
+  
+
+  render(){
+   
+    return (
     <View style={styles.screen}>    
       <NavigationBar />
 
@@ -39,24 +67,43 @@ export default function App() {
       </View>
     </View>
 
-      <TouchableOpacity style={styles.button} onPress= {()=> setIsAddMode(true)}>
+      <TouchableOpacity style={styles.button} 
+      //onPress= {()=> setIsAddMode(true)}
+      >
         <Text style={styles.buttonText}>Post Something!</Text>
       </TouchableOpacity>
-       
-      <PostInput visible={isAddMode} onAddGoal = {addGoalHandler} onCancel={cancelGoalAdditionHandler}/>
-      <FlatList 
-        keyExtractor={(item, index)=> item.id}
-        data ={courseGoals} 
-        renderItem={itemData => 
-        <PostItem 
-        id={itemData.item.id} 
-        onDelete={removeGoalHandler} 
-        title={itemData.item.value } />
-           }
-      />
+
+        <View style={styles.container}>
+
+        <Text style={styles.text}>Courses</Text>
+        <ScrollView>
+        {   
+            this.state.courseGoals.map((l,i) => (
+              
+                  <ListItem
+                      
+                      key={i}
+                      title={l.text}
+                      subtitle={l.dateOfPost}
+                      color='black' 
+                      bottomDivider
+                    
+                      
+
+                  />
+             
+                )   
+              
+            )  
+            
+           
+        }
+        </ScrollView>
+        </View>
     </View>
   );
-};
+  }
+}
 
 const styles = StyleSheet.create({
   screen: {

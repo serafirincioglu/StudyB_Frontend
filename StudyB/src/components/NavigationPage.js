@@ -9,6 +9,8 @@ import FeedPage from './FeedPage';
 import ProfilePage from './ProfilePage';
 import RewardPage from './RewardPage';
 import PostPage from './PostPage';
+import CoursesList from './CoursesList';
+
 
 export default class NavigationPage extends Component{
     render(){
@@ -23,7 +25,7 @@ export default class NavigationPage extends Component{
                     <Scene key="profilepage" component={ProfilePage} title="ProfilePage"/>
                     <Scene key="rewardpage" component={RewardPage} title="RewardPage"/>
                     <Scene key="postpage" component={PostPage} title="PostPage"/>
-
+                    <Scene key="courseslist" component={CoursesList} title="CoursesList"/>
                 </Stack>
             </Router>
         )

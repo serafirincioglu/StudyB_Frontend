@@ -21,10 +21,9 @@ export default class FeedPage extends Component{
          Actions.rewardpage()
     }
 
-    postpage(){
-        Actions.postpage()
+    courseslist(){
+      Actions.courseslist()
     }
-
     render(){
        
       return (
@@ -57,7 +56,7 @@ export default class FeedPage extends Component{
                 <Text style={styles.buttonText}>Rewards</Text>
               </TouchableOpacity>
     
-              <TouchableOpacity style={styles.button} onPress={() => {this.postpage()}}>
+              <TouchableOpacity style={styles.button} onPress={() => {this.courseslist()}}>
                 <Chat />
                 <Text style={styles.buttonText}>Chatrooms</Text>
               </TouchableOpacity>

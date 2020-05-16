@@ -4,20 +4,18 @@ import {ListItem,CheckBox, ButtonGroup,Icon} from 'react-native-elements';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import {} from 'react-native-fontawesome';
-//import {} from 'react-native-vector-icons';
 
 
 
-export default class CoursePage extends Component{
+export default class CoursesList extends Component{
     
     constructor(props) {
         super(props);
         this.state = {chatroom: []};
-        
     }
 
-    feedPage(){
-        Actions.feedpage()
+    postpage(){
+        Actions.postpage()
     }
 
 
@@ -33,55 +31,20 @@ export default class CoursePage extends Component{
           })
     }
 
-    enrollToChatroom = (chId) => {
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-        }}
-        const a = {
-            "text": "deneme...",
-            "fileAddress": null
-        }   
+    routeToChatRoom = (chId) => {
         
-        const address = 'https://studyb.azurewebsites.net/api/enroll/' + chId + '/enrollChatroom/' + onlineUser;
-        
-        console.log(address);
-        console.log(a);
+        onlineChatroom = chId;
+        console.log(chId);
+        console.log(onlineChatroom);
+        Actions.postpage();
 
-        axios.post(address, a, config)
-        .then(res =>{
-            console.log(res);
-              if(res.status == 204){
-                onlineChatroom = chId;
-                console.log(chId);
-                console.log(onlineChatroom);
-                Actions.feedpage();
-              }
-              else{
-                alert("You have already enrolled ! ");
-              }
-            }
-            
-        ).catch(error => {
-                console.log(error);
-                alert("You have already enrolled ! ");
-        });   
-    
     }
             
-
-
-        
-    
-
-
 
     render(){
         const {handleSubmit} = this.props;  
         return(
-       
+        
         <ScrollView> 
      
             <View style={styles.container}>
@@ -91,15 +54,13 @@ export default class CoursePage extends Component{
                 {   
                     this.state.chatroom.map((l,i) => (
                         <ListItem
-                            
                             key={i}
                             title={l.chatroomName}
                             subtitle={l.id}
                             color='black' 
                             bottomDivider
                             
-                            onPress={() => {this.enrollToChatroom(l.id)}}
-                            
+                            onPress={() => {this.routeToChatRoom(l.id)}}
                 
                         />
                        

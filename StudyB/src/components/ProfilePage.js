@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native';
 import axios from 'axios';
+import {ListItem,CheckBox, ButtonGroup,Icon} from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 
 
 import NavigationBar from './NavigationBar';
@@ -20,25 +22,81 @@ export default class ProfilePage extends Component {
     constructor(props) {
         super(props);
         this.state = {chatroom: []};
+        this.state = {user: []};
+
     }
 
-   componentDidMount(){
-    const config = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }}
-    
-    axios.get('https://studyb.azurewebsites.net/api/chatrooms',config)
-    .then(response => {
-      console.log(response.chatroomName);
-      this.setState({chatroom: response.chatroomName });
+
+    routeToChatRoom = (chId) => {
+        
+      onlineChatroom = chId;
+      console.log(chId);
+      console.log(onlineChatroom);
+      Actions.postpage();
+
+  } 
+  postpage(){
+    Actions.postpage()
+  }
+
+
+
+   
+    componentDidMount(){
+      const config = {
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          }}
       
-    })
-    .catch(function (error) {
-      console.log('noooooo');
-    })
-   }
+      let one = "https://studyb.azurewebsites.net/api/users/" + onlineUser;
+      let two = "https://studyb.azurewebsites.net/api/chatrooms/"  + onlineUser + '/user';
+      
+      console.log("dkfkldjgld");
+      console.log(one);
+      console.log(two);
+
+
+      const requestOne = axios.get(one, config);
+      const requestTwo = axios.get(two, config);
+          
+      axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
+        //console.log(responses[0].data);
+        //console.log(responses[1].data);
+        //this.state.user = responses[0].data;
+        this.setState({user: response[0].data});
+        this.setState({chatroom: response[1].data});
+
+        //this.state.chatroom = responses[1].data;
+
+        
+        // use/access the results 
+      })).catch(errors => {
+        console.log('noooooo');
+      })
+     }
+
+ 
+
+  //  componentDidMount(){
+  //   const config = {
+  //       headers: {
+  //           'Content-Type': 'application/json',
+  //           'Accept': 'application/json'
+  //       }}
+  
+
+      
+  //   axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineUser + '/user',config)
+  //   .then(response => {
+  //     console.log(response.data);
+  //     this.setState({chatroom: response.data});
+      
+  //   })
+  //   .catch(function (error) {
+  //     console.log('noooooo');
+  //   })
+  //  }
 
     render()
     {
@@ -73,9 +131,25 @@ export default class ProfilePage extends Component {
 
                 <View style={styles.nameDep}>
                 <Text style={styles.NameStyle}>Name</Text>
-                <View>
-                    <Text style={styles.buttonText}>abc</Text>
-                </View>
+                <Text> {   
+                    // this.state.user.map((l,i) => (
+                    //     <ListItem
+                            
+                    //         key={i}
+                    //         title={l.userName}
+                            
+                    //         color='black' 
+                    //         bottomDivider
+                          
+
+                    //     />
+                       
+                    //     )   
+                       
+                    // )  
+                    
+                    
+                }</Text>
                 <Text style={styles.NameStyle}>Surname</Text>
                 <View>
                     <Text style={styles.buttonText}>
@@ -98,15 +172,27 @@ export default class ProfilePage extends Component {
                 </View>
                 </View>
                 <ScrollView>
+                {   
+                    this.state.chatroom.map((l,i) => (
+                        <ListItem
+                            
+                            key={i}
+                            title={l.chatroomName}
+                            subtitle={l.id}
+                            color='black' 
+                            bottomDivider
+                            onPress={() => {this.routeToChatRoom(l.id)}}
 
-            { SampleNameArray.map((item, key)=>(
-                <TouchableOpacity style={styles.button} >
-                <Text key={key} style={styles.buttonText} > { item } </Text>
-                </TouchableOpacity>
-                )
-                )}
-
-            </ScrollView>
+                        />
+                       
+                        )   
+                       
+                    )  
+                    
+                    
+                }
+               
+                </ScrollView>
             
             
             </View>
