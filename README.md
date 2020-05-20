@@ -38,5 +38,4 @@ Designer: Betim Doğan
 Integration: Sera Fırıncıoğlu  
 
 # Important Note  
-
-
+Since Expo CLI is used to test the front-end, the code appears to be too many lines.
