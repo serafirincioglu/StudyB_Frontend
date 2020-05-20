@@ -5,30 +5,33 @@
 Team Lead: Sera Fırıncıoğlu  
 Code owner: Sera Fırıncıoğlu  
 Designer: Betim Doğan  
-İntegration: none needed  
+Integration: none needed  
 ###### Post package: PostPage.js / PostItem.js / PostInput.js  
 Team Lead: Mert Özerdem  
 Code owner: Sera Fırıncıoğlu / Mert Özerdem  
 Designer: Betim Doğan  
-İntegration: Mert Özerdem / Sera Fırıncıoğlu  
+Integration: Mert Özerdem / Sera Fırıncıoğlu  
 ###### Sign package: SignUp.js / SignIn.js  
 Team Lead: Sera Fırıncıoğlu  
 Code owner: Sera Fırıncıoğlu / Mert Özerdem  
 Designer: Betim Doğan  
-İntegration: Mert Özerdem / Sera Fırıncıoğlu  
+Integration: Mert Özerdem / Sera Fırıncıoğlu  
 ###### Profile package: ProfilPage.js / RewardPage.js  
 Team Lead: Sera Fırıncıoğlu  
 Code owner: Sera Fırıncıoğlu / Mert Özerdem  
 Designer: Betim Doğan  
-İntegration: Mert Özerdem / Sera Fırıncıoğlu  
+Integration: Mert Özerdem / Sera Fırıncıoğlu  
 ###### Course package: CoursePage.js / CoursesList.js  
 Team Lead: Mert Özerdem  
 Code owner: Sera Fırıncıoğlu / Mert Özerdem  
 Designer: Betim Doğan  
-İntegration: Mert Özerdem / Sera Fırıncıoğlu  
+Integration: Mert Özerdem / Sera Fırıncıoğlu  
 ###### Feed package: FeedPage.js  
 Team Lead: Betim Doğan  
 Code owner: Sera Fırıncıoğlu  
 Designer: Betim Doğan  
-İntegration: Sera Fırıncıoğlu  
+Integration: Sera Fırıncıoğlu  
+
+# Important Note  
+
 
