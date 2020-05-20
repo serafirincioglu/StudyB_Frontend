@@ -3,6 +3,11 @@
 ## Front-end workload and code written:  
 ###### Navigation package: 
 Team Lead: Sera Fırıncıoğlu  
-code owner: Sera Fırıncıoğlu
-
+Code owner: Sera Fırıncıoğlu
+Deisgner: Betim Doğan
+###### Navigation package: NavigationBar.js
+Team Lead: Sera Fırıncıoğlu  
+Code owner: Sera Fırıncıoğlu
+Deisgner: Betim Doğan
+İntegration: none needed
 
