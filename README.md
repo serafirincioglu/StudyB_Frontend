@@ -26,9 +26,13 @@ Code owner: Sera Fırıncıoğlu / Mert Özerdem
 Deisgner: Betim Doğan  
 İntegration: Mert Özerdem / Sera Fırıncıoğlu  
 ###### Course package: CoursePage.js / CoursesList.js  
-Team Lead: Mert Fırıncıoğlu  
+Team Lead: Mert Özerdem  
 Code owner: Sera Fırıncıoğlu / Mert Özerdem  
 Deisgner: Betim Doğan  
 İntegration: Mert Özerdem / Sera Fırıncıoğlu  
-
+###### Feed package: FeedPage.js  
+Team Lead: Betim Doğan  
+Code owner: Sera Fırıncıoğlu  
+Deisgner: Betim Doğan  
+İntegration: Sera Fırıncıoğlu  
 
