@@ -1,5 +1,10 @@
 # StudyB Front-end  
-## Front-end Team: Mert Özerdem, Sera Fırıncıoğlu, Betim Doğan, Alara Yaman, Berfu Deniz Kara 
+## Front-end Team: 
+### Mert Özerdem 
+### Sera Fırıncıoğlu
+### Betim Doğan
+### Alara Yaman
+### Berfu Deniz Kara 
 ## Front-end workload and code written:  
 ###### Navigation package: NavigationBar.js / MainPage.js
 Team Lead: Sera Fırıncıoğlu  
@@ -33,5 +38,5 @@ Designer: Betim Doğan
 Integration: Sera Fırıncıoğlu  
 
 # Important Note  
-Since Expo CLI is used to test the front-end, the code appears to be too many lines.
+
 
