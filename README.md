@@ -39,3 +39,10 @@ Integration: Sera Fırıncıoğlu
 
 # Important Note  
 Since Expo CLI is used to test the front-end, the code appears to be too many lines.
+
+Non-used web application
+## Web SignUp package: SingIn.js / SignUp.js 
+Team Lead: Alara Yaman  
+Code owner: Alara Yaman
+Designer: Alara Yaman
+Integration: not implemented
