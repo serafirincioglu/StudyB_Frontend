@@ -24,6 +24,11 @@ export default class FeedPage extends Component{
     courseslist(){
       Actions.courseslist()
     }
+
+    mainpage(){
+      Actions.mainpage()
+    }
+    
     render(){
        
       return (
@@ -60,7 +65,10 @@ export default class FeedPage extends Component{
                 <Chat />
                 <Text style={styles.buttonText}>Chatrooms</Text>
               </TouchableOpacity>
-    
+              
+              {/* <TouchableOpacity style={styles.button} onPress={() => {this.mainpage()}}>
+                <Text style={styles.buttonText}>Logout</Text>
+              </TouchableOpacity> */}
             </View>
           </View>
         </View>

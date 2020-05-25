@@ -19,73 +19,115 @@ import {
 
 export default class ProfilePage extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {chatroom: []};
-        this.state = {user: []};
-
-    }
+  constructor(props) {
+      super(props);
+      this.state = {chatroom: [], nameofuser:'', surnameofuser: ''};
+  }
 
 
-    routeToChatRoom = (chId) => {
-        
-      onlineChatroom = chId;
-      console.log(chId);
-      console.log(onlineChatroom);
-      Actions.postpage();
+  routeToChatRoom = (chId) => {
+    onlineChatroom = chId;
+    console.log(chId);
+    console.log(onlineChatroom);
+    Actions.postpage();
 
   } 
+
   postpage(){
     Actions.postpage()
   }
 
-
+  rewardpage(){
+    Actions.rewardpage()
+  }
 
    
-    componentDidMount(){
-      const config = {
-          headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-          }}
+  //  componentDidMount(){
+  //     const config = {
+  //         headers: {
+  //             'Content-Type': 'application/json',
+  //             'Accept': 'application/json'
+  //         }}
       
-      let one = "https://studyb.azurewebsites.net/api/users/" + onlineUser;
-      let two = "https://studyb.azurewebsites.net/api/chatrooms/"  + onlineUser + '/user';
+  //     let one = "https://studyb.azurewebsites.net/api/users/" + onlineUser;
+  //     let two = "https://studyb.azurewebsites.net/api/chatrooms/"  + onlineUser + '/user';
       
-      console.log("dkfkldjgld");
-      console.log(one);
-      console.log(two);
+  //     console.log("dkfkldjgld");
+  //     console.log(one);
+  //     console.log(two);
 
 
-      const requestOne = axios.get(one, config);
-      const requestTwo = axios.get(two, config);
+  //     const requestOne = axios.get(one, config);
+  //     const requestTwo = axios.get(two, config);
           
-      axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
-        //console.log(responses[0].data);
-        //console.log(responses[1].data);
-        //this.state.user = responses[0].data;
-        this.setState({user: response[0].data});
-        this.setState({chatroom: response[1].data});
+  //     axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
+  //       //console.log(responses[0].data);
+  //       //console.log(responses[1].data);
+  //       //this.state.user = responses[0].data;
+  //       this.setState({user: response[0].data});
+  //       this.setState({chatroom: response[1].data});
 
-        //this.state.chatroom = responses[1].data;
+  //       //this.state.chatroom = responses[1].data;
 
         
-        // use/access the results 
-      })).catch(errors => {
-        console.log('noooooo');
-      })
-     }
+  //       // use/access the results 
+  //     })).catch(errors => {
+  //       console.log('noooooo');
+  //     })
+  //    }
 
  
+// getName(onlineUser){
+//     this.setState.currentUserName = onlineUser.data.firstName;
+//     this.setState.currentUserSurname = onlineUser.data.lastName;
+  
+//   }
+  componentDidMount(){
+    
+    const config = {
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+    }}
+    
+    Promise.all([
+      axios.get('https://studyb.azurewebsites.net/api/users/' + onlineUser, config),
+      axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineUser + '/user',config),
+    ]).then((response1,response2) => {
+      console.log("response1[1].data");
+      console.log(response1[1].data);
+      this.setState({nameofuser: response1[0].data.firstName});
+      this.setState({surnameofuser: response1[0].data.lastName});
+      this.setState({chatroom: response1[1].data});
+    })
 
-  //  componentDidMount(){
+  }
+
+
+  // componentDidMount(){
+  //   const config = {
+  //     headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json'
+  //     }}
+
+  //   axios.get('https://studyb.azurewebsites.net/api/users/' + onlineUser, config)
+  //   .then(response => {
+  //     this.setState({nameofuser: response.data.firstName});
+      
+  //   })
+  //   .catch(function (error) {
+  //     console.log('noooooo');
+  //   })
+
+  // }
+
+  // componentDidMount(){
   //   const config = {
   //       headers: {
   //           'Content-Type': 'application/json',
   //           'Accept': 'application/json'
   //       }}
-  
-
       
   //   axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineUser + '/user',config)
   //   .then(response => {
@@ -98,101 +140,82 @@ export default class ProfilePage extends Component {
   //   })
   //  }
 
-    render()
+  render()
     {
         var SampleNameArray = [ "Course 1", "Course 2", "Course 3", "Course 4", "Course 5", "Course 6" ];
-        
+       
         return(
-
+              
                 <View style={styles.screen}>  
-
-                <NavigationBar/>
-
-                <View style={styles.blueLine}>
+                  
+                  <NavigationBar/>
+                  <View style={styles.blueLine}>
                 
-                <View style={styles.iconText}>
-                <View style={StyleSheet.container}>
-                <Image style={{width: 40, height:40}}
-                    source={require('../images/Profile.png')}/>
-                </View>
-                <Text style={styles.profText}>My Profile</Text>
-                </View>
-
-                </View>
+                    <View style={styles.iconText}>
+                      <View style={StyleSheet.container}>
+                        <Image style={{width: 40, height:40}}
+                        source={require('../images/Profile.png')}/>
+                      </View>
+                      <Text style={styles.profText}>My Profile</Text>
+                    </View>
+                  </View>
                 
-                <View style={styles.namePP}>
+                  <View style={styles.namePP}>
 
-                <View style={styles.NavigBar}>
-                <View style={styles.studyBText}>
-                <Image style={{width: 100, height:100}}
-                    source={require('../images/defaultpp.png')}/>
-                </View>
-                </View>
+                    <View style={styles.NavigBar}>
+                      <View style={styles.studyBText}>
+                        <Image style={{width: 100, height:100}}
+                          source={require('../images/defaultpp.png')}/>
+                      </View>
+                    </View>
 
-                <View style={styles.nameDep}>
-                <Text style={styles.NameStyle}>Name</Text>
-                <Text> {   
-                    // this.state.user.map((l,i) => (
-                    //     <ListItem
+                    <View style={styles.nameDep}>
+                      <Text style={styles.NameStyle}>Name</Text>
+                      <Text style={styles.NameStyle}>{this.state.nameofuser}</Text>
+                      <Text></Text>
+                      <Text style={styles.NameStyle}>Surname</Text>
+                      <Text style={styles.NameStyle}>{this.state.surnameofuser}</Text>
+                      <View>
+                        <Text style={styles.buttonText}>
                             
-                    //         key={i}
-                    //         title={l.userName}
-                            
-                    //         color='black' 
-                    //         bottomDivider
-                          
+                        </Text>
+                      </View>
+                      <Text style={styles.NameStyle}>Department</Text>
+                      <Text style={styles.NameStyle}>Computer Science</Text>
+                      <TouchableOpacity style={styles.rewardsButton} onPress={() => this.rewardpage()}> 
+                        <Reward />
+                        <Text style={styles.buttonText}>Rewards</Text>
+                      </TouchableOpacity>
+                    </View>
 
-                    //     />
-                       
-                    //     )   
-                       
-                    // )  
-                    
-                    
-                }</Text>
-                <Text style={styles.NameStyle}>Surname</Text>
-                <View>
-                    <Text style={styles.buttonText}>
+                  </View>
+                
+                  <View style={styles.blueLine}>
+                    <View style={styles.iconText}>
+                    <Book />
+                    <Text style={styles.profText}>Courses</Text>
+                    </View>
+                  </View>
+                
+                  <ScrollView>
+                  {   
+                      this.state.chatroom.map((l,i) => (
+                          <ListItem
+                              key={i}
+                              title={l.chatroomName}
+                              color='black' 
+                              bottomDivider
+                              onPress={() => {this.routeToChatRoom(l.id)}}
+                          />
                         
-                    </Text>
-                </View>
-                <Text style={styles.NameStyle}>Department</Text>
-                <TouchableOpacity style={styles.rewardsButton}> 
-                    <Reward />
-                    <Text style={styles.buttonText}>Rewards</Text>
-                </TouchableOpacity>
-                </View>
-
-                </View>
+                      )   
+                        
+                     )  
+                      
+                      
+                  }
                 
-                <View style={styles.blueLine}>
-                <View style={styles.iconText}>
-                <Book />
-                <Text style={styles.profText}>Courses</Text>
-                </View>
-                </View>
-                <ScrollView>
-                {   
-                    this.state.chatroom.map((l,i) => (
-                        <ListItem
-                            
-                            key={i}
-                            title={l.chatroomName}
-                            subtitle={l.id}
-                            color='black' 
-                            bottomDivider
-                            onPress={() => {this.routeToChatRoom(l.id)}}
-
-                        />
-                       
-                        )   
-                       
-                    )  
-                    
-                    
-                }
-               
-                </ScrollView>
+                  </ScrollView>
             
             
             </View>

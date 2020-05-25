@@ -1,5 +1,5 @@
 import React, { useState,Component }  from 'react';
-import { StyleSheet,Text, View, TextInput, Button, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet,Text, View, TextInput, Button, ScrollView, FlatList, TouchableOpacity, Modal } from 'react-native';
 import {ListItem,CheckBox, ButtonGroup,Icon} from 'react-native-elements';
 
 import PostItem from './PostItem';
@@ -9,10 +9,11 @@ import Book from '../images/Book';
 import axios from 'axios';
 
 export default class PostPage extends Component {
-
+  
   constructor(props) {
     super(props);
-    this.state = {courseGoals: []};
+    this.state = {courseGoals: [], comment: '', nameOfChatroom: ''};
+    
   }
 
   addGoalHandler = (goalTitle) => {
@@ -34,6 +35,7 @@ export default class PostPage extends Component {
     setIsAddMode(false);
   } 
   
+ 
   componentDidMount(){
     const config = {
       headers: {
@@ -43,7 +45,7 @@ export default class PostPage extends Component {
 
     axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom + '/messages/',config)
       .then(response => {
-        //esponse.data.foreach(d => this.addGoalHandler(d))
+        //response.data.foreach(d => this.addGoalHandler(d))
         console.log("reponse of courses page" +   response.data);
         this.setState({courseGoals: response.data });
       })
@@ -52,69 +54,128 @@ export default class PostPage extends Component {
       })
   }
 
+
+  handleTextChange = (inputText) => {
+    this.state.comment = inputText;
+  }
+
+  getCourseName(){
+    const config = {
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+    }}
+    
+    axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom ,config)
+      .then(response => {
+        //response.data.foreach(d => this.addGoalHandler(d))
+        
+        this.setState({chatroomName: response.data.chatroomName});
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+
+  }
+
+
+  postSomething(){
+    console.log("this.state.comment!");
+    console.log(this.state.comment);
+   
+    const config = {
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+    }}
+
+    axios.post('https://studyb.azurewebsites.net/api/messages/' + onlineChatroom + '/users/' + onlineUser + '/messages/' , {text: this.state.comment}, config)
+      .then(response => {
+        console.log("Response : " +   response.id);
+        console.log("Response.text : " +   response.text);
+       
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.log("Failed to post !");
+      })
+
+  }
+
   
 
   render(){
-   
+    this.getCourseName();
+    
     return (
-    <View style={styles.screen}>    
-      <NavigationBar />
-
-      <View style={styles.blueLine}>
-    <View style={styles.iconText}>
-      <Book />
-      <Text style={styles.profText}>Course 1</Text>
-      </View>
-    </View>
-
-      <TouchableOpacity style={styles.button} 
-      //onPress= {()=> setIsAddMode(true)}
-      >
-        <Text style={styles.buttonText}>Post Something!</Text>
-      </TouchableOpacity>
+      
+      <View style={styles.screen}>    
+        
+        <NavigationBar />
+        
+        <View style={styles.blueLine}>
+          <View style={styles.iconText}>
+            <Book />
+            <Text style={styles.profText}>{this.state.chatroomName}</Text>
+          </View>
+        </View>
+        
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}  
+            onChangeText={this.handleTextChange}  
+            placeholder="Enter your comment"  
+            placeholderTextColor="red" 
+          >
+          </TextInput>
+        </View>
+        
+        <TouchableOpacity style={styles.button} onPress={() => this.postSomething()}>
+          <Text style={styles.buttonText}>Post Something!</Text>
+        </TouchableOpacity>
 
         <View style={styles.container}>
+          <Text style={styles.text}>Courses</Text>
+          
+          <ScrollView>
+          {   
+              this.state.courseGoals.map((l,i) => (
+                
+                    <ListItem
+                        
+                        key={i}
+                        title={l.text}
+                        subtitle={l.dateOfPost}
+                        color='black' 
+                        bottomDivider
+                
 
-        <Text style={styles.text}>Courses</Text>
-        <ScrollView>
-        {   
-            this.state.courseGoals.map((l,i) => (
+                    />
               
-                  <ListItem
-                      
-                      key={i}
-                      title={l.text}
-                      subtitle={l.dateOfPost}
-                      color='black' 
-                      bottomDivider
-                    
-                      
-
-                  />
-             
-                )   
-              
-            )  
-            
-           
-        }
-        </ScrollView>
+                  )   
+              )  
+          }
+          </ScrollView>
         </View>
-    </View>
+      </View>
   );
   }
 }
 
 const styles = StyleSheet.create({
+  
   screen: {
     flex:1,
     padding: 50,
     backgroundColor: 'black',
   },
+  
   iconText:{
     flexDirection: 'row',
     alignItems: 'center'
   },
+  
   blueLine: {
     flexDirection: 'column',
     backgroundColor: '#56D6E0',
@@ -125,6 +186,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 10
   },
+  
   profText: {
     fontSize:18,
     fontWeight: 'bold',
@@ -135,6 +197,7 @@ const styles = StyleSheet.create({
     marginLeft: 10
 
   },
+  
   button:{
     backgroundColor:'#56D6E0',
     width: 200,
@@ -147,6 +210,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  
   buttonText: {
     fontSize:16,
     fontWeight: 'bold',
@@ -155,5 +219,26 @@ const styles = StyleSheet.create({
     alignItems: 'center'
 
   },
+  inputContainer: { 
+    padding: 10, 
+    marginBottom: 10,
+    justifyContent: 'center', 
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  input: {
+    width: '80%',
+    borderColor: '#56D6E0',
+    borderWidth: 1,
+    padding: 10, 
+    marginBottom: 10,
+    color: '#56D6E0'
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '60%',
+    backgroundColor: 'black'
+  }, 
   
 });

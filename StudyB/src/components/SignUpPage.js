@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 20,
     backgroundColor: 'white',
-    borderRadius: 25,
+    borderRadius: 20,
     paddingHorizontal: 50
   },
   sectionTitle: {
@@ -76,7 +76,10 @@ const styles = StyleSheet.create({
     backgroundColor:'#56D6E0',
     width: 100,
     borderRadius: 25,
-    paddingVertical: 16
+    paddingVertical: 16,
+    alignContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center'
   },
   errorText:{
     fontSize: 12,
@@ -86,11 +89,10 @@ const styles = StyleSheet.create({
 
   },
   body1 : {
-
     backgroundColor: 'black',
     justifyContent:'center',
     alignItems : 'center',
- 
+    paddingTop: 100,
 },
 });
 
@@ -174,12 +176,12 @@ class SignUpPage extends Component{
                           autoCapitalize = 'none'
                           component={this.renderTextInput}/>
                     <Field name="firstName" 
-                          placeholder="firstName"
+                          placeholder="FirstName"
                           autoCapitalize = 'none'
                           component={this.renderTextInput}/>
 
                     <Field name="lastName" 
-                          placeholder="lastName"
+                          placeholder="LastName"
                           autoCapitalize = 'none'
                           component={this.renderTextInput}/>
 

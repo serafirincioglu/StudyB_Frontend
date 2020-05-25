@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         justifyContent:'center',
         alignItems : 'center',
-        paddingTop: 100
+        paddingTop: 70
         
     },
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         width: 200,
         borderRadius: 25,
         paddingVertical: 16,
-        paddingHorizontal: 10,
+        paddingHorizontal: 70,
         alignItems:'center'
       }
 })

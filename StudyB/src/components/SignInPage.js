@@ -6,8 +6,6 @@ import Logo from '../images/Logo'
 import axios from 'axios';
 import InputText from './InputText';
 
-
-
 import {
     StyleSheet,
     View,
@@ -30,6 +28,9 @@ class SignInPage extends Component {
 
   feedpage(){
     Actions.feedpage()
+  }
+  signuppage(){
+    Actions.signup()
   }
   
   onSubmit = (values) => {
@@ -121,7 +122,7 @@ class SignInPage extends Component {
                 </View>
                 <View style={styles.signUpTextCont}>
                     <Text style={styles.signUpText}>Dont have an account Sign Up!</Text>
-                    <TouchableOpacity><Text style={styles.input} style={styles.button}/></TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.signuppage()}><Text style={styles.input} style={styles.button}/></TouchableOpacity>
               
 
                 </View>
