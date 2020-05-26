@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Alert } from 'react-native';
 import {Field,reduxForm} from 'redux-form';
 import Logo from '../images/Logo'
 import axios from 'axios';
@@ -55,8 +55,15 @@ class SignInPage extends Component {
                       console.log(onlineUser);
                       Actions.feedpage();
                   }
+                  else{
+                    alert("Wrong username or password, try again !");
+
+                  }
+                
                 });
-        })
+        }).catch(error => {
+          console.log(error);
+        });
   }
   
 

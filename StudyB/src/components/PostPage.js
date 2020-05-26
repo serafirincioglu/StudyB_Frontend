@@ -12,7 +12,11 @@ export default class PostPage extends Component {
   
   constructor(props) {
     super(props);
-    this.state = {courseGoals: [], comment: '', nameOfChatroom: ''};
+    this.state = {courseGoals: [],
+                   comment: '', 
+                   nameOfChatroom: '', 
+                   usernameOfChatroom: [],
+                  };
     
   }
 
@@ -35,7 +39,29 @@ export default class PostPage extends Component {
     setIsAddMode(false);
   } 
   
- 
+  // componentDidMount(){
+  //   const config = {
+  //     headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json'
+  //   }}
+  //   Promise.all([
+  //     axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom + '/messages/',config),
+  //     axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom ,config),
+  //     axios.post('https://studyb.azurewebsites.net/api/messages/' + onlineChatroom + '/users/' + onlineUser + '/messages/' , {text: this.state.comment}, config),
+
+  //   ]).then((response1, response2, response3) => {
+  //       //response.data.foreach(d => this.addGoalHandler(d))
+  //       //console.log("reponse of courses page" +   response.data);
+  //       this.setState({courseGoals: response1.data });
+  //       this.setState({chatroomName: response2.data.chatroomName});
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     })
+
+  // }
+ //Calisan kod buuu
   componentDidMount(){
     const config = {
       headers: {
@@ -43,41 +69,96 @@ export default class PostPage extends Component {
           'Accept': 'application/json'
     }}
 
-    axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom + '/messages/',config)
-      .then(response => {
-        //response.data.foreach(d => this.addGoalHandler(d))
-        console.log("reponse of courses page" +   response.data);
-        this.setState({courseGoals: response.data });
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-  }
+  //   axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom + '/messages/',config)
+  //     .then(response => {
+  //       //response.data.foreach(d => this.addGoalHandler(d))
+  //       console.log("reponse of courses page" +   response.data);
+  //       this.setState({courseGoals: response.data });
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     })
+  // //}
+//-------------------------------------------
+  // componentDidMount2(){
+    // const config = {
+    //   headers: {
+    //       'Content-Type': 'application/json',
+    //       'Accept': 'application/json'
+    // }}
+    Promise.all([
+      
 
+      axios.get('https://studyb.azurewebsites.net/api/chatrooms/'+ onlineChatroom + '/messages/', config),
+      axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom ,config),
+      axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom + '/messages/',config)
+    ])
+      .then(([response1, response2,response]) => {
+        //response.data.foreach(d => this.addGoalHandler(d))
+     
+        //this.setState({courseGoals: response.data });
+        // console.log("Before"+usernameOfChatroom);
+        // console.log("response1.data.userName : " + response1.data.userName);
+        // console.log("response1.userName : " + response1.userName);
+  
+        console.log("response1.data : " + response1.data);
+
+         this.setState({usernameOfChatroom: response1.data});
+        //  console.log("After" + usernameOfChatroom);
+        
+        this.setState({chatroomName: response2.data.chatroomName});
+        this.setState({courseGoals: response.data });
+
+      })
+      // .catch(function (error) {
+      //   console.log(error);
+      // })
+  }
 
   handleTextChange = (inputText) => {
     this.state.comment = inputText;
   }
 
-  getCourseName(){
-    const config = {
-      headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-    }}
+  // getCourseName(){
+  //   const config = {
+  //     headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json'
+  //   }}
     
-    axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom ,config)
-      .then(response => {
-        //response.data.foreach(d => this.addGoalHandler(d))
+  //   axios.get('https://studyb.azurewebsites.net/api/chatrooms/' + onlineChatroom ,config)
+  //     .then(response => {
+  //       //response.data.foreach(d => this.addGoalHandler(d))
         
-        this.setState({chatroomName: response.data.chatroomName});
+  //       this.setState({chatroomName: response.data.chatroomName});
         
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     })
 
-  }
+  //}
+
+  // getusername(){
+  //   const config = {
+  //     headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json'
+  //   }}
+    
+  //   axios.get('https://studyb.azurewebsites.net/api/users/' + onlineUser ,config)
+  //     .then(response => {
+  //       //response.data.foreach(d => this.addGoalHandler(d))
+  //       console.log("response.data.userName");
+  //       console.log(response.data.userName);
+  //       this.setState({usernameOfChatroom: response.data.userName});
+        
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     })
+
+  // }
 
 
   postSomething(){
@@ -94,6 +175,7 @@ export default class PostPage extends Component {
       .then(response => {
         console.log("Response : " +   response.id);
         console.log("Response.text : " +   response.text);
+        this.componentDidMount();
        
       })
       .catch(function (error) {
@@ -106,7 +188,8 @@ export default class PostPage extends Component {
   
 
   render(){
-    this.getCourseName();
+    //this.getCourseName();
+    //this.getusername();
     
     return (
       
@@ -140,13 +223,15 @@ export default class PostPage extends Component {
           
           <ScrollView>
           {   
+
               this.state.courseGoals.map((l,i) => (
                 
                     <ListItem
                         
                         key={i}
-                        title={l.text}
-                        subtitle={l.dateOfPost}
+                        title={l.userName}
+                        subtitle={l.text}
+                        rightSubtitle={l.dateOfPost.slice(11,16)}
                         color='black' 
                         bottomDivider
                 

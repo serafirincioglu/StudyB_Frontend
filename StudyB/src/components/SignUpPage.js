@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
 
 class SignUpPage extends Component{
 
-    coursepage(){
-        Actions.coursepage()
+    feedpage(){
+        Actions.feedpage()
     }    
     
     onSubmit = (values) => {
@@ -114,26 +114,30 @@ class SignUpPage extends Component{
         axios.post('https://studyb.azurewebsites.net/api/users', values, config)
                 .then(res =>{
                   console.log(res);
-                    if(res.status == 201){
-                      onlineUser = res.data.id;
-                      console.log(onlineUser);
-                      Actions.coursepage();
-                    }
+                 
+                  if(res.status == 201){
+                    onlineUser = res.data.id;
+                    console.log(onlineUser);
+                    console.log(values.email);
+                    Actions.feedpage();
+                  }
 
-                    else{
-                      alert("boooom!!");
-                    }
-                    
+                  else{
+                    alert("Something wrong with request !");
+                  }
+                
                   }
                   
                   ).catch(error => {
+                    alert("Invalid email, please use Bilkent mail accout ! ");
                     console.log(error);
-                    
-                    });
+                  });
         
                 
     
     }
+
+  
     renderTextInput = (field) => {
         const {meta: {touched,error}, label, secureTextEntry, maxLength, keyboardType, placeholder, input: {onChange, ...restInput}} = field;
         return (
@@ -173,21 +177,26 @@ class SignUpPage extends Component{
                 <View style={styles.sectionContainer}>
                     <Field name="userName" 
                           placeholder="Username"
-                          autoCapitalize = 'none'
+                          //autoCapitalize = 'none'
+                          secureTextEntry={false}
                           component={this.renderTextInput}/>
                     <Field name="firstName" 
                           placeholder="FirstName"
-                          autoCapitalize = 'none'
+                          //autoCapitalize = 'none'
+                          secureTextEntry={false}
                           component={this.renderTextInput}/>
 
                     <Field name="lastName" 
                           placeholder="LastName"
-                          autoCapitalize = 'none'
+                          autoCapitalize = "none"
+                          secureTextEntry={false}
                           component={this.renderTextInput}/>
 
                     <Field name="email" 
+                          autoCapitalize = "none"
                           placeholder="Email"
-                          autoCapitalize = 'none'
+                          //autoCapitalize = 'none'
+                          secureTextEntry={false}
                           component={this.renderTextInput}/>
 
                     <Field name="password" 

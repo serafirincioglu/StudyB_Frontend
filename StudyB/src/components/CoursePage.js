@@ -66,7 +66,7 @@ export default class CoursePage extends Component{
             
         ).catch(error => {
                 console.log(error);
-                alert("You have already enrolled ! ");
+                alert("Could not enrolled ! ");
         });   
     
     }
@@ -97,7 +97,6 @@ export default class CoursePage extends Component{
                             subtitle={l.id}
                             color='black' 
                             bottomDivider
-                            
                             onPress={() => {this.enrollToChatroom(l.id)}}
                             
                 
