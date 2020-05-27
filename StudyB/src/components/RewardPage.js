@@ -64,7 +64,7 @@ const styles = StyleSheet.create(
             marginBottom: 20,
             width: '60%',
             alignSelf:'center', 
-            paddingTop: 20,
+            paddingTop: 60,
             
            
         },

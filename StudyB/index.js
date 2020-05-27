@@ -1,5 +1,5 @@
 import {AppRegistry} from 'react-native';
-//import App from './src/components/MainPage';
+//import App from './src/components/FeedPage';
 import App from './App';
 
 

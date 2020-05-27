@@ -66,7 +66,7 @@ export default class CoursesList extends Component{
                         <ListItem style= {styles.listStyle}
                             key={i}
                             title={l.chatroomName}
-                            titleStyle={{ color: 'black', fontSize: 23, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
+                            titleStyle={{ color: 'black', fontSize: 18, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
                             //subtitle={l.id}
                             //subtitleStyle={{ color: 'black' , backgroundColor: 'white', fontWeight: 'bold', textAlign: 'center'}}
                             color='black' 
@@ -94,7 +94,7 @@ export default class CoursesList extends Component{
 
 const styles = StyleSheet.create({
     courseScreen:{
-        paddingTop:20,
+        paddingTop:50,
         backgroundColor: 'black',
         flex: 1,
     },

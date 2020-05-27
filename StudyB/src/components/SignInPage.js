@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
       
     },
     sectionContainer: {
-      marginTop: 20,
+      marginTop: 50,
       paddingHorizontal: 100,
       backgroundColor: 'white',
       borderRadius: 25

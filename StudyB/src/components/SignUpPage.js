@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
     flex: 1,
     
+    
   },
   sectionContainer: {
     marginTop: 0,
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   },
   emptySpace3:{
     backgroundColor: 'black',
-    height: 50,
+    height: 300,
   },
   button:{
     backgroundColor:'#56D6E0',
@@ -205,8 +206,9 @@ class SignUpPage extends Component{
                     <Text style={styles.buttonText}>Sign Up</Text>
                   </TouchableOpacity>  
               </View>
-              </View>
               <View style={styles.emptySpace3}></View>
+              </View>
+              
               </ScrollView>
         );
     }
