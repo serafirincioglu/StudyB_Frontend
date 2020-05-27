@@ -10,7 +10,7 @@ import {
 export default class RewardPage extends Component{
     render(){
         return(
-            <View>
+            <View style={styles.rewardscreen}>
                 
                 <View style={styles.NavigBar}>
                     <View style={styles.studyBText}>
@@ -20,10 +20,19 @@ export default class RewardPage extends Component{
                     </View>
                 </View>
 
-                <View style={StyleSheet.container}>
-                    <Image style={{width: 30, height:30}}
+                <View style={styles.blueLine}>
+      
+                <View style={styles.iconText}>
+                <Image style={{width: 30, height:30}}
+                        source={require('../images/reward.png')}/>
+                <Text style={styles.profText} >Rewards</Text>
+                <Image style={{width: 30, height:30}}
                         source={require('../images/reward.png')}/>
                 </View>
+
+                </View>
+
+                
 
             </View>
 
@@ -33,10 +42,15 @@ export default class RewardPage extends Component{
   
 const styles = StyleSheet.create(
     {
+        rewardscreen: {
+            backgroundColor: 'black',
+            flex: 1,
+        },
         container: {
             justifyContent:'center',
             alignItems: 'center',
             alignContent: 'center',
+            backgroundColor: 'black'
             
 
         },
@@ -49,10 +63,36 @@ const styles = StyleSheet.create(
             backgroundColor:'black',
             marginBottom: 20,
             width: '60%',
-            alignSelf:'center'
+            alignSelf:'center', 
+            paddingTop: 20,
             
            
         },
+        iconText:{
+            flexDirection: 'row',
+            alignItems: 'center'
+          },
+          blueLine: {
+            flexDirection: 'column',
+            backgroundColor: '#56D6E0',
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignContent: 'center',
+            height: '8%',
+            marginBottom: 20,
+            marginTop: 10
+          },
+          profText: {
+            fontSize:25,
+            fontWeight: 'bold',
+            color: '#ffffff',
+            textAlign: 'center',
+            alignItems: 'center',
+            alignSelf: 'center',
+            marginLeft: 10,
+            marginRight: 10
+        
+          },
         BarText: {
             fontSize:16,
             fontWeight: 'bold',

@@ -4,8 +4,8 @@ import {ListItem,CheckBox, ButtonGroup,Icon} from 'react-native-elements';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import {} from 'react-native-fontawesome';
-
-
+import Book from '../images/CoursesIcon';
+import NavigationBar from '../images/NavigationBar';
 
 export default class CoursesList extends Component{
     
@@ -45,18 +45,30 @@ export default class CoursesList extends Component{
         const {handleSubmit} = this.props;  
         return(
         
+    <View style= {styles.courseScreen}>
+     <NavigationBar />
+    <View style={styles.blueLine}>
+      
+      <View style={styles.iconText}>
+      <Book/>
+      <Text style={styles.profText} >Chatrooms</Text>
+      <Book/>
+      </View>
+      </View>
+        
         <ScrollView> 
      
             <View style={styles.container}>
 
-                <Text style={styles.text}>Courses</Text>
                 
                 {   
                     this.state.chatroom.map((l,i) => (
-                        <ListItem
+                        <ListItem style= {styles.listStyle}
                             key={i}
                             title={l.chatroomName}
-                            subtitle={l.id}
+                            titleStyle={{ color: 'black', fontSize: 23, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
+                            //subtitle={l.id}
+                            //subtitleStyle={{ color: 'black' , backgroundColor: 'white', fontWeight: 'bold', textAlign: 'center'}}
                             color='black' 
                             bottomDivider
                             
@@ -73,6 +85,7 @@ export default class CoursesList extends Component{
 
             </View>
         </ScrollView>
+        </View>
         
         );
     }
@@ -80,20 +93,40 @@ export default class CoursesList extends Component{
 
 
 const styles = StyleSheet.create({
+    courseScreen:{
+        paddingTop:20,
+        backgroundColor: 'black',
+        flex: 1,
+    },
     body: {
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        flex: 1,
+    },
+    listStyle: {
+        height: 100,
+        paddingTop: 20,
+        paddingHorizontal:50,
+        paddingVertical: 30,
+        borderRadius: 20,
+        backgroundColor: 'black',
+        alignItems: 'center',
+        justifyContent: 'center', 
+        color: '#56D6E0',
+        flex:1
+
     },
     container : {
         padding: 30,
         paddingLeft: 0,
         paddingRight: 0,
-        paddingTop: 40,
+        paddingTop: 10,
         paddingBottom:0,
         alignContent: 'center',
         flex: 1,
         backgroundColor: 'black',
         justifyContent:'center',
-        alignItems : 'stretch'
+        alignItems : 'stretch',
+
     },
     text: {
         textAlign : 'center',
@@ -101,5 +134,37 @@ const styles = StyleSheet.create({
         paddingTop:0,
         color:'white'
     },
+    iconText:{
+        flexDirection: 'row',
+        alignItems: 'center'
+      },
+      blueLine: {
+        flexDirection: 'column',
+        backgroundColor: '#56D6E0',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        height: '8%',
+        marginBottom: 20,
+        marginTop: 10
+      },
+      profText: {
+        fontSize:25,
+        fontWeight: 'bold',
+        color: '#ffffff',
+        textAlign: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginLeft: 10,
+        marginRight: 10
+    
+      },
+      studyBText: {
+              flexDirection: 'row',
+              width: '40%',
+              justifyContent:'space-between',
+              alignItems: 'center',
+              alignSelf: 'center',
+          }
 
 })

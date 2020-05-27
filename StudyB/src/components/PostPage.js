@@ -5,7 +5,7 @@ import {ListItem,CheckBox, ButtonGroup,Icon} from 'react-native-elements';
 import PostItem from './PostItem';
 import PostInput from './PostInput';
 import NavigationBar from './NavigationBar';
-import Book from '../images/Book';
+import Book from '../images/CoursesIcon';
 import axios from 'axios';
 
 export default class PostPage extends Component {
@@ -209,7 +209,8 @@ export default class PostPage extends Component {
             style={styles.input}  
             onChangeText={this.handleTextChange}  
             placeholder="Enter your comment"  
-            placeholderTextColor="red" 
+            placeholderTextColor='#56D6E0' 
+            
           >
           </TextInput>
         </View>
@@ -226,11 +227,13 @@ export default class PostPage extends Component {
 
               this.state.courseGoals.map((l,i) => (
                 
-                    <ListItem
+                    <ListItem style= {styles.listStyle}
                         
                         key={i}
                         title={l.userName}
+                        titleStyle={{ color: 'black', fontSize: 20, fontWeight: 'bold', backgroundColor: 'white'}}
                         subtitle={l.text}
+                        subtitleStyle={{ color: 'black' , backgroundColor: 'white'}}
                         rightSubtitle={l.dateOfPost.slice(11,16)}
                         color='black' 
                         bottomDivider
@@ -282,7 +285,19 @@ const styles = StyleSheet.create({
     marginLeft: 10
 
   },
-  
+  listStyle: {
+    
+    paddingTop: 10,
+    paddingHorizontal:10,
+    paddingVertical: 5,
+    borderRadius: 20,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center', 
+    color: '#56D6E0',
+    flex:1
+
+},
   button:{
     backgroundColor:'#56D6E0',
     width: 200,
@@ -309,7 +324,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     justifyContent: 'center', 
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'black',
   },
   input: {
     width: '80%',
@@ -317,8 +332,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10, 
     marginBottom: 10,
-    color: '#56D6E0'
-  },
+    color: '#56D6E0',
+    fontSize: 16,
+    borderRadius: 20
+},
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',

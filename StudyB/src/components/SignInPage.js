@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import { StatusBar, Alert } from 'react-native';
+import { StatusBar } from 'react-native';
 import {Field,reduxForm} from 'redux-form';
 import Logo from '../images/Logo'
 import axios from 'axios';
@@ -55,15 +55,8 @@ class SignInPage extends Component {
                       console.log(onlineUser);
                       Actions.feedpage();
                   }
-                  else{
-                    alert("Wrong username or password, try again !");
-
-                  }
-                
                 });
-        }).catch(error => {
-          console.log(error);
-        });
+        })
   }
   
 
@@ -98,6 +91,7 @@ class SignInPage extends Component {
                   backgroundColor="white"
                   barStyle="light-content"
                   />
+                  <View style= {styles.logoText}>
                   <View style={styles.body1}>
                     <Logo/>
                   </View>
@@ -105,7 +99,7 @@ class SignInPage extends Component {
                 <Text style={styles.sectionDescription}>
                       <Text style={styles.sectionTitle}>Sign In !</Text>
                   </Text>
-                
+                  </View>
 
                 <View style={styles.sectionContainer}>
                     <View>
@@ -129,7 +123,7 @@ class SignInPage extends Component {
                 </View>
                 <View style={styles.signUpTextCont}>
                     <Text style={styles.signUpText}>Dont have an account Sign Up!</Text>
-                    <TouchableOpacity onPress={() => this.signuppage()}><Text style={styles.input} style={styles.button}/></TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={() => this.signuppage()}><Text style={styles.buttonText}>Sign Up</Text></TouchableOpacity>
               
 
                 </View>
@@ -160,15 +154,20 @@ const styles = StyleSheet.create({
      
       
     },
+    logoText: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
     body1: {
       backgroundColor: Colors.black,
       flex: 1,
       alignItems: 'center',
-      paddingTop: 100
+      paddingTop: 70
       
     },
     sectionContainer: {
-      marginTop: 70,
+      marginTop: 20,
       paddingHorizontal: 100,
       backgroundColor: 'white',
       borderRadius: 25
@@ -180,8 +179,7 @@ const styles = StyleSheet.create({
       alignItems:'center',
       textAlign : 'center',
       color: '#56D6E0',
-      paddingTop:30,
-      paddingHorizontal:10
+      paddingTop: 150,
     },
     sectionDescription: {
       marginTop: 8,

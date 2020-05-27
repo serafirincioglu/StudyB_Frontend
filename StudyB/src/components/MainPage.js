@@ -24,14 +24,15 @@ class MainPage extends Component{
             
                     <Text style = {styles.text}>StudyB</Text>
                     
+                    <View style = {styles.buttonContainer} >
                     <TouchableOpacity onPress={this.signin} style={styles.button} >
                         <Text  style={styles.buttonText}  >Sign In</Text>
                     </TouchableOpacity>
-                    
+                    <View style= {styles.emptySpace}></View>
                     <TouchableOpacity onPress={this.signup} style={styles.button}>
                         <Text style={styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
-                    
+                    </View>
                 </View>
                 
 
@@ -55,27 +56,36 @@ const styles = StyleSheet.create({
         paddingTop: 70
         
     },
+    buttonContainer: {
+        padding:20,
+        flexDirection: "column",
+        justifyContent: 'center'
+      },
 
     text: {
         textAlign : 'center',
         color: '#56D6E0',
-        fontSize: 20,
+        fontSize: 30,
         paddingTop:30,
+        paddingBottom: 20,
         paddingHorizontal:10
     },
  
     buttonText: {
         fontSize:16,
-        fontWeight: '500',
+        fontWeight: 'bold',
         color:'#ffffff',
         textAlign: 'center',
         alignItems: 'center'
   
       },
+      emptySpace: {
+        height: 20,
+      },
       button:{
         backgroundColor:'#56D6E0',
         width: 200,
-        borderRadius: 25,
+        borderRadius: 30,
         paddingVertical: 16,
         paddingHorizontal: 70,
         alignItems:'center'

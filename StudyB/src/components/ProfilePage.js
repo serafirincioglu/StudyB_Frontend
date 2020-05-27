@@ -149,6 +149,7 @@ export default class ProfilePage extends Component {
                 <View style={styles.screen}>  
                   
                   <NavigationBar/>
+                  <ScrollView>
                   <View style={styles.blueLine}>
                 
                     <View style={styles.iconText}>
@@ -162,12 +163,15 @@ export default class ProfilePage extends Component {
                 
                   <View style={styles.namePP}>
 
+                  <View style={styles.emptySpace1}></View>
                     <View style={styles.NavigBar}>
                       <View style={styles.studyBText}>
                         <Image style={{width: 100, height:100}}
                           source={require('../images/defaultpp.png')}/>
                       </View>
                     </View>
+
+                    <View style={styles.emptySpace2}></View>
 
                     <View style={styles.nameDep}>
                       <Text style={styles.NameStyle}>Name</Text>
@@ -197,12 +201,13 @@ export default class ProfilePage extends Component {
                     </View>
                   </View>
                 
-                  <ScrollView>
+                  
                   {   
                       this.state.chatroom.map((l,i) => (
-                          <ListItem
+                          <ListItem style= {styles.listStyle}
                               key={i}
                               title={l.chatroomName}
+                              titleStyle={{ color: 'black', fontSize: 20, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
                               color='black' 
                               bottomDivider
                               onPress={() => {this.routeToChatRoom(l.id)}}
@@ -215,9 +220,10 @@ export default class ProfilePage extends Component {
                       
                   }
                 
+                <View style={styles.emptySpace3}></View>
                   </ScrollView>
             
-            
+                  
             </View>
 
             )
@@ -235,6 +241,31 @@ const styles = StyleSheet.create({
     iconText:{
       flexDirection: 'row',
       alignItems: 'center'
+    },
+    emptySpace1:{
+      backgroundColor: 'black',
+      width: 120,
+    },
+    emptySpace2:{
+      backgroundColor: 'black',
+      width: 30,
+    },
+    emptySpace3:{
+      backgroundColor: 'black',
+      height: 50,
+    },
+    listStyle: {
+      height: 100,
+      paddingTop: 20,
+      paddingHorizontal:50,
+      paddingVertical: 30,
+      borderRadius: 20,
+      backgroundColor: 'black',
+      alignItems: 'center',
+      justifyContent: 'center', 
+      color: '#56D6E0',
+      flex:1
+
     },
     blueLine: {
       flexDirection: 'column',
@@ -290,7 +321,7 @@ const styles = StyleSheet.create({
     },
   
     profText: {
-      fontSize:18,
+      fontSize:25,
       fontWeight: 'bold',
       color: '#ffffff',
       textAlign: 'center',

@@ -13,7 +13,8 @@ import {
     TextInput,
     Dimensions,
     Button,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
   } from 'react-native';
   
 import {
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     
   },
   sectionContainer: {
-    marginTop: 20,
+    marginTop: 0,
     backgroundColor: 'white',
     borderRadius: 20,
     paddingHorizontal: 50
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: '600',
     color: Colors.white,
-    marginTop: 0,
+    marginTop: 10,
     alignItems:'center',
     textAlign: 'center'
   },
@@ -72,6 +73,10 @@ const styles = StyleSheet.create({
     textAlign: 'center'
 
   },
+  emptySpace3:{
+    backgroundColor: 'black',
+    height: 50,
+  },
   button:{
     backgroundColor:'#56D6E0',
     width: 100,
@@ -92,14 +97,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     justifyContent:'center',
     alignItems : 'center',
-    paddingTop: 100,
+    paddingTop: 90,
+    height: 350
 },
 });
 
 class SignUpPage extends Component{
 
-    feedpage(){
-        Actions.feedpage()
+    coursepage(){
+        Actions.coursepage()
     }    
     
     onSubmit = (values) => {
@@ -114,30 +120,26 @@ class SignUpPage extends Component{
         axios.post('https://studyb.azurewebsites.net/api/users', values, config)
                 .then(res =>{
                   console.log(res);
-                 
-                  if(res.status == 201){
-                    onlineUser = res.data.id;
-                    console.log(onlineUser);
-                    console.log(values.email);
-                    Actions.feedpage();
-                  }
+                    if(res.status == 201){
+                      onlineUser = res.data.id;
+                      console.log(onlineUser);
+                      Actions.coursepage();
+                    }
 
-                  else{
-                    alert("Something wrong with request !");
-                  }
-                
+                    else{
+                      alert("boooom!!");
+                    }
+                    
                   }
                   
                   ).catch(error => {
-                    alert("Invalid email, please use Bilkent mail accout ! ");
                     console.log(error);
-                  });
+                    
+                    });
         
                 
     
     }
-
-  
     renderTextInput = (field) => {
         const {meta: {touched,error}, label, secureTextEntry, maxLength, keyboardType, placeholder, input: {onChange, ...restInput}} = field;
         return (
@@ -160,7 +162,7 @@ class SignUpPage extends Component{
     render() {
       const {handleSubmit} = this.props;  
       return(
-              
+              <ScrollView>
               <View style={styles.body}>
                     
                 <View style={styles.body1}>
@@ -173,30 +175,25 @@ class SignUpPage extends Component{
                           
                 </View>
 
-                    
+                
                 <View style={styles.sectionContainer}>
                     <Field name="userName" 
                           placeholder="Username"
-                          //autoCapitalize = 'none'
-                          secureTextEntry={false}
+                          autoCapitalize = 'none'
                           component={this.renderTextInput}/>
                     <Field name="firstName" 
                           placeholder="FirstName"
-                          //autoCapitalize = 'none'
-                          secureTextEntry={false}
+                          autoCapitalize = 'none'
                           component={this.renderTextInput}/>
 
                     <Field name="lastName" 
                           placeholder="LastName"
-                          autoCapitalize = "none"
-                          secureTextEntry={false}
+                          autoCapitalize = 'none'
                           component={this.renderTextInput}/>
 
                     <Field name="email" 
-                          autoCapitalize = "none"
                           placeholder="Email"
-                          //autoCapitalize = 'none'
-                          secureTextEntry={false}
+                          autoCapitalize = 'none'
                           component={this.renderTextInput}/>
 
                     <Field name="password" 
@@ -209,6 +206,8 @@ class SignUpPage extends Component{
                   </TouchableOpacity>  
               </View>
               </View>
+              <View style={styles.emptySpace3}></View>
+              </ScrollView>
         );
     }
 
