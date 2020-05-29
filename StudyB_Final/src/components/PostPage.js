@@ -294,6 +294,7 @@ export default class PostPage extends Component {
                   )   
               )  
           }
+           <View style={styles.emptySpace3}></View>
           </ScrollView>
         </View>
       </View>
@@ -307,6 +308,10 @@ const styles = StyleSheet.create({
     flex:1,
     padding: 50,
     backgroundColor: 'black',
+  },
+  emptySpace3:{
+    backgroundColor: 'black',
+    height: 400,
   },
   
   iconText:{
