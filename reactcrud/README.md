@@ -1,5 +1,6 @@
 
 ## Non-used Prototype Webpage(Only for testing and learning purposes)
+Mainly tested and learned axios library to send CRUD requests.
 
 ### Resources used:  
 https://github.com/facebook/create-react-app  
