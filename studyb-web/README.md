@@ -33,7 +33,7 @@ Designer: Alara Yaman
 Integration:Alara Yaman
 
 
-Taking references from to design  https://material-ui.com/api/card-actions/,https://material-ui.com/api/app-bar/,https://material-ui.com/api/toolbar/
+Taking references from to design  https://material-ui.com/api/card-actions/, https://material-ui.com/api/app-bar/, https://material-ui.com/api/toolbar/
 #### Web DashBoard package: Dashboard.js  (shows our course list of the page, connecting to database)####
 
 
