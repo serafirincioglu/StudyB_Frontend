@@ -49,7 +49,6 @@ Designer: Alara Yaman
 Integration:Alara Yaman
 
 
-Taking references from this example because having a trouble to connect with our database https://github.com/mui-org/material-ui/issues/14416
 
 
 #### For learning: https://github.com/cornflourblue/angular-8-registration-login-example open this one and understand how it is work. To test the push github and  pushed this code in the our test part to study ####
