@@ -41,8 +41,4 @@ Integration: Sera Fırıncıoğlu
 Since Expo CLI is used to test the front-end, the code appears to be too many lines.
 
 ## web application:  
-###### Web SignUp package: SingIn.js / SignUp.js  
-Team Lead: Alara Yaman    
-Code owner: Alara Yaman  
-Designer: Alara Yaman  
-Integration:implemented
+Details are on the studyb-web readme.md
