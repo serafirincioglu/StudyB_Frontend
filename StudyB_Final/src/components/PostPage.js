@@ -325,13 +325,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    height: '8%',
+    height: '10%',
     marginBottom: 20,
     marginTop: 10
   },
   
   profText: {
-    fontSize:22,
+    fontSize:20,
     fontWeight: 'bold',
     color: '#ffffff',
     textAlign: 'center',

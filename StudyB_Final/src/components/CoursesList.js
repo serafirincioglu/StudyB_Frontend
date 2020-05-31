@@ -68,10 +68,10 @@ export default class CoursesList extends Component{
                             avatarStyle={{backgroundColor:'white' }}
                             key={i}
                             title={l.chatroomName}
-                            titleStyle={{ color: 'black', fontSize: 20, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
+                            titleStyle={{ color: 'black', fontSize: 16, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
                             //subtitle={l.id}
                             //subtitleStyle={{ color: 'black' , backgroundColor: 'white', fontWeight: 'bold', textAlign: 'center'}}
-                            containerStyle={{ borderBottomWidth: 0, borderColor: 'white', borderRadius: 35, backgroundColor: 'white', width: 250, height: 60}}
+                            containerStyle={{ borderBottomWidth: 0, borderColor: 'white', borderRadius: 35, backgroundColor: 'white', width: 250, height: 90}}
                             bottomDivider
                             
                             onPress={() => {this.routeToChatRoom(l.id)}}

@@ -209,8 +209,8 @@ export default class ProfilePage extends Component {
                               avatarStyle={{backgroundColor:'white' }} 
                               key={i}
                               title={l.chatroomName}
-                              titleStyle={{ color: 'black', fontSize: 20, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
-                              containerStyle={{ borderBottomWidth: 0, borderColor: 'white', borderRadius: 35, backgroundColor: 'white', width: 250, height: 60}} 
+                              titleStyle={{ color: 'black', fontSize: 16, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
+                              containerStyle={{ borderBottomWidth: 0, borderColor: 'white', borderRadius: 35, backgroundColor: 'white', width: 250, height: 90}} 
                               bottomDivider
                               onPress={() => {this.routeToChatRoom(l.id)}}
                           />
