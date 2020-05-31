@@ -270,7 +270,6 @@ export default class PostPage extends Component {
         </TouchableOpacity>
 
         <View style={styles.container}>
-          <Text style={styles.text}>Courses</Text>
           
           <ScrollView>
           {   
@@ -285,7 +284,7 @@ export default class PostPage extends Component {
                         subtitle={l.text}
                         subtitleStyle={{ color: 'black' , backgroundColor: 'white'}}
                         rightSubtitle={l.dateOfPost.slice(11,16)}
-                        color='black' 
+                        containerStyle={{ borderBottomWidth: 0, borderColor: 'white', borderRadius: 25, backgroundColor: 'white', width: 300}} 
                         bottomDivider
                 
 
@@ -306,8 +305,9 @@ const styles = StyleSheet.create({
   
   screen: {
     flex:1,
-    padding: 50,
     backgroundColor: 'black',
+    paddingTop:50,
+    paddingBottom:50
   },
   emptySpace3:{
     backgroundColor: 'black',
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
   },
   
   profText: {
-    fontSize:18,
+    fontSize:22,
     fontWeight: 'bold',
     color: '#ffffff',
     textAlign: 'center',

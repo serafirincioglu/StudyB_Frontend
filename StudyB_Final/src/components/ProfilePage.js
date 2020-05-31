@@ -205,10 +205,12 @@ export default class ProfilePage extends Component {
                   {   
                       this.state.chatroom.map((l,i) => (
                           <ListItem style= {styles.listStyle}
+                              leftAvatar={{ rounded: false ,source: require('../images/classroom2.png') , size: 'small'  } }  
+                              avatarStyle={{backgroundColor:'white' }} 
                               key={i}
                               title={l.chatroomName}
                               titleStyle={{ color: 'black', fontSize: 20, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
-                              color='black' 
+                              containerStyle={{ borderBottomWidth: 0, borderColor: 'white', borderRadius: 35, backgroundColor: 'white', width: 250, height: 60}} 
                               bottomDivider
                               onPress={() => {this.routeToChatRoom(l.id)}}
                           />

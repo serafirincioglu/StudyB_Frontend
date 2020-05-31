@@ -95,13 +95,16 @@ export default class RewardPage extends Component{
                                 <ListItem style= {styles.listStyle}
                                    
                                     key={i}
-                                    
-                                    title={l.rewardName}
-                                    titleStyle={{ color: 'black', textAlign: 'center', fontSize: 20, fontWeight: 'bold', backgroundColor: 'white'}}
+                                    leftAvatar={{ rounded: false ,source: require('../images/reward2.png')   } }  
+                                    avatarStyle={{backgroundColor:'white' }}    
+                            
+                                     title={l.rewardName}
+                                    titleStyle={{ color: 'black', textAlign: 'center', fontSize: 22, fontWeight: 'bold', backgroundColor: 'white'}}
                                     //subtitle={l.text}
                                     //subtitleStyle={{ color: 'black' , backgroundColor: 'white'}}
                                     //rightSubtitle={l.dateOfPost.slice(11,16)}
                                     color='black' 
+                                    containerStyle={{ borderBottomWidth: 0, borderColor: 'white', borderRadius: 35, backgroundColor: 'white', width: 200}}
                                     bottomDivider
                             
 

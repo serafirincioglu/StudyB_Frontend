@@ -64,12 +64,14 @@ export default class CoursesList extends Component{
                 {   
                     this.state.chatroom.map((l,i) => (
                         <ListItem style= {styles.listStyle}
+                            leftAvatar={{ rounded: false ,source: require('../images/chatroom1.png') , size: 'medium'  } }  
+                            avatarStyle={{backgroundColor:'white' }}
                             key={i}
                             title={l.chatroomName}
-                            titleStyle={{ color: 'black', fontSize: 18, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
+                            titleStyle={{ color: 'black', fontSize: 20, fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center'}}
                             //subtitle={l.id}
                             //subtitleStyle={{ color: 'black' , backgroundColor: 'white', fontWeight: 'bold', textAlign: 'center'}}
-                            color='black' 
+                            containerStyle={{ borderBottomWidth: 0, borderColor: 'white', borderRadius: 35, backgroundColor: 'white', width: 250, height: 60}}
                             bottomDivider
                             
                             onPress={() => {this.routeToChatRoom(l.id)}}
