@@ -1,7 +1,6 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -18,18 +17,10 @@ import Chatrooms from "./chat.png";
 import Profile from "./user.png";
 import Courses from "./online-learning.png";
 
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      
-        Study B - 2020
-      {'.'}
-    </Typography>
-  );
-}
+import {  Link} from 'react-router-dom'
 
+
+//theme is already defined in our course we used meterial- ui library
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -62,9 +53,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//const cards = [1, 2, 3];
 
-export default function Album() {
+export default function MainPage() {
   const classes = useStyles();
 
   return (
@@ -82,7 +72,7 @@ export default function Album() {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm" align="center" >
-            <img src={Logo} / >
+            <img alt="logo" src={Logo} / >
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               StudyB
             </Typography>
@@ -107,10 +97,11 @@ export default function Album() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
-                      Go to profile page
-                    </Button>
-
+                    <Link to="/profile">
+                      <Button size="small" color="primary">
+                        Go to profile page
+                      </Button>
+                    </Link>
                   </CardActions>
                 </Card>
               </Grid>
@@ -184,11 +175,6 @@ export default function Album() {
           </Grid>
         </Container>
       </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Copyright />
-      </footer>
-      {/* End footer */}
     </React.Fragment>
   );
 }

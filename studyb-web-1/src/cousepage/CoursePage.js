@@ -3,34 +3,24 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
+
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+
 import {mainListItems} from './listItems';
-import Orders from './Orders';
-import axios from 'axios';//başka web sitelerine istek atma apiye istek attık
+import Orders from './Courses';
+import axios from 'axios';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-        StudyB - 2020
-
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -113,22 +103,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function CoursePage() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);//react hooksla state tutma
+  const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const empty = [];
-  const [rows, setRows] = useState(empty);//set rows liste oluşturma
+  const [rows, setRows] = useState(empty);
   useEffect(() => {
-    if(rows==empty)
-    retrieveCourses();//axiosla web sitesine istek
+    if(rows===empty)
+    retrieveCourses();
     
   },[rows]);
   
@@ -136,9 +125,9 @@ export default function Dashboard() {
   
 const retrieveCourses = async () => {
   await axios
-    .get("https://cors-anywhere.herokuapp.com/https://studyb.azurewebsites.net/api/chatrooms")//cors by pass
+    .get("https://cors-anywhere.herokuapp.com/https://studyb.azurewebsites.net/api/chatrooms")
     .then(function (response) {
-      setRows(response.data);//web sitesinden gelen cevabı listeye aktarıyor
+      setRows(response.data);
     }
     );
 };
@@ -158,6 +147,7 @@ const retrieveCourses = async () => {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+            StudyB
           </Typography>
         </Toolbar>
       </AppBar>
@@ -181,16 +171,13 @@ const retrieveCourses = async () => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Recent Orderr. asıl liste kısmı burdalisteyi çekiyoruz rowsa kaydediyoruz ordersa atiyoruz */}
+            {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Orders rows={rows} />
               </Paper>
             </Grid>
           </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
         </Container>
       </main>
     </div>

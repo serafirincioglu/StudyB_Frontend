@@ -1,30 +1,18 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';//meterial uidaki görsel ihtiyaçlar
-import Logo from './album/studybLogo.png';//bizim logo
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'//mnavigasyon
+import Container from '@material-ui/core/Container';
+import Logo from './mainpage/studybLogo.png';
+import { Link} from 'react-router-dom'
 
 
-function Copyright() {//şık durması
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-        StudyB - 2020
-    </Typography>
-  );
-}
 
-const useStyles = makeStyles((theme) => ({//css stilleri hazır
+
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -44,7 +32,7 @@ const useStyles = makeStyles((theme) => ({//css stilleri hazır
   },
 }));
 
-export default function SignIn() {//sign in page üretildiği yer
+export default function LogIn() {
   const classes = useStyles();
 
   return (
@@ -53,7 +41,7 @@ export default function SignIn() {//sign in page üretildiği yer
       <div className={classes.paper}>
         <img src={Logo}  alt="logo"/>
         <Typography component="h1" variant="h5">
-          Sign in
+          StudyB - Log in
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -61,10 +49,9 @@ export default function SignIn() {//sign in page üretildiği yer
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
             autoFocus
           />
           <TextField
@@ -87,14 +74,11 @@ export default function SignIn() {//sign in page üretildiği yer
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Log In
             </Button>
           </Link>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }

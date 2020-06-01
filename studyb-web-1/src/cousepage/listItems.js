@@ -7,18 +7,20 @@ import ChatIcon from '@material-ui/icons/Chat';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
+import {  Link } from 'react-router-dom'
 
 
 
 export const mainListItems = (
   <div>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Profile" />
-    </ListItem>
+    <Link to="/profile">
+      <ListItem button>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Profile" />
+      </ListItem>
+    </Link>
     <ListItem button>
       <ListItemIcon>
         <DashboardIcon />
